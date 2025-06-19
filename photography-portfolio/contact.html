@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VD VisualGallery- Contact</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Google Font 'Inter' for modern typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Using colors inspired by the provided image: light neutral background, dark text */
+            background-color: #F7F7F7; /* A light, neutral background */
+            color: #333333; /* Darker text for readability */
+        }
+        /* Styling for navigation links */
+        .navbar-link {
+            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+        }
+        /* Styling for main section headings with an underline effect */
+        .section-heading {
+            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+        }
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #D3D3D3; /* A soft grey from the image palette */
+            margin: 1rem auto 0;
+            border-radius: 9999px; /* Fully rounded corners for the underline */
+        }
+        /* Styling for form input fields (less relevant for embedded form but kept for consistency) */
+        .input-field {
+            @apply w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500;
+        }
+        /* Styling for form submission button (less relevant for embedded form but kept for consistency) */
+        .submit-button {
+            @apply bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300;
+        }
+        /* Responsive styling for the Google Form iframe */
+        .google-form-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* Adjust this value to control iframe aspect ratio (e.g., 56.25% for 16:9) */
+            height: 0;
+            overflow: hidden;
+            margin-top: 2rem;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+        }
+        .google-form-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">VD VisualGallery </a>
+            <ul class="flex space-x-2 md:space-x-4">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="bio.html" class="navbar-link">Profile</a></li>
+                <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
+                <li><a href="contact.html" class="navbar-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Contact Section Content -->
+        <section id="contact" class="container mx-auto px-4 py-16 md:py-24">
+            <h2 class="section-heading">Get In Touch</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+                <p class="text-center text-lg text-gray-700 mb-8">
+                    Have a project in mind or just want to say hello? Fill out the form below:
+                </p>
+                <!-- Google Form Embedding Area -->
+                <div class="google-form-container">
+                    <!-- IMPORTANT: Replace the 'src' URL below with the embed URL from your own Google Form -->
+                    <iframe src="https://forms.gle/Xc1cjjerDqvHwvNH6" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                </div>
+
+                <div class="mt-12 text-center text-gray-700">
+                    <p class="mb-2"><strong>Email:</strong> varundevang505@gmail.com</p>
+                    <p class="mb-2"><strong>Phone:</strong> +91 9590997505</p>
+                    <p><strong>Location:</strong> [Mysuru,Karnataka,India]</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
+               <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
+                <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
+                <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

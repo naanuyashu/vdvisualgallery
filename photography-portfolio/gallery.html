@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VD VisualGallery - Gallery</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Import Google Font 'Inter' for modern typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Using colors inspired by the provided image: light neutral background, dark text */
+            background-color: #F7F7F7; /* A light, neutral background */
+            color: #333333; /* Darker text for readability */
+        }
+        /* Styling for navigation links */
+        .navbar-link {
+            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+        }
+        /* Styling for main section headings with an underline effect */
+        .section-heading {
+            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+        }
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: #D3D3D3; /* A soft grey from the image palette */
+            margin: 1rem auto 0;
+            border-radius: 9999px; /* Fully rounded corners for the underline */
+        }
+        /* Styling for gallery category filter buttons */
+        .gallery-category-button {
+            @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
+                   border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400;
+        }
+        /* Active state for gallery category buttons (JavaScript will add this class) */
+        .active-category {
+             @apply bg-gray-700 text-white border-gray-700 hover:bg-gray-800 hover:border-gray-800;
+        }
+        /* Styling for individual gallery item cards */
+        .card {
+            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105;
+        }
+        /* Video element specific styling to ensure it fits its container */
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block; /* Remove extra space below video */
+            background-color: black; /* Background for loading/no video */
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Header & Navigation -->
+    <!-- This header is consistent across all pages -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-800">VD VisualGallery</a>
+            <ul class="flex space-x-2 md:space-x-4">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
+                <li><a href="bio.html" class="navbar-link">Profile</a></li>
+                <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
+                <li><a href="contact.html" class="navbar-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Gallery Section Content -->
+        <section id="gallery" class="bg-gray-50 container mx-auto px-4 py-16 md:py-24 rounded-lg shadow-inner">
+            <h2 class="section-heading">My Gallery</h2>
+
+            <!-- Video Gallery Sub-section -->
+            <div class="mb-16">
+                <h3 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Videos</h3>
+                <!-- Filter buttons for video categories. These buttons call JavaScript functions on click. -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="gallery-category-button active-category" onclick="filterVideos('all', this)">All Videos</button>
+                    <button class="gallery-category-button" onclick="filterVideos('cinematic', this)">Cinematic</button>
+                    <button class="gallery-category-button" onclick="filterVideos('documentary', this)">Documentary</button>
+                    <!-- Add more video categories here by adding new buttons with unique 'data-category' values -->
+                </div>
+                <!-- Grid for displaying video cards. JavaScript will control the visibility of these cards. -->
+                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Example Cinematic Video Card. Update 'src' with your video path. -->
+                    <div class="video-card card cinematic" data-category="cinematic">
+                        <div class="aspect-video bg-gray-200">
+                            <!-- HTML5 <video> tag for self-hosted videos. Provide 'poster' for a thumbnail. -->
+                            <video controls class="video-player rounded-t-xl" poster="images/cinematic_thumbnail.jpg">
+                                <source src="videos/my_cinematic_video.mp4" type="video/mp4">
+                                <!-- Provide a .webm fallback for broader browser compatibility -->
+                                <source src="videos/my_cinematic_video.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Urban Exploration - Cinematic</h4>
+                            <p class="text-gray-600 text-sm">A visual journey through the forgotten corners of the city.</p>
+                        </div>
+                    </div>
+                    <!-- Example Documentary Video Card. Update 'src' with your video path. -->
+                    <div class="video-card card documentary" data-category="documentary">
+                        <div class="aspect-video bg-gray-200">
+                            <video controls class="video-player rounded-t-xl" poster="images/documentary_thumbnail.jpg">
+                                <source src="videos/my_documentary_video.mp4" type="video/mp4">
+                                <source src="videos/my_documentary_video.webm" type="video/webm">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Life in the Highlands - Documentary</h4>
+                            <p class="text-gray-600 text-sm">Exploring the daily lives of a remote mountain community.</p>
+                        </div>
+                    </div>
+                    <!-- Add more video examples following this structure, updating paths and descriptions -->
+                </div>
+            </div>
+
+            <!-- Image Gallery Sub-section -->
+            <div>
+                <h3 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Photos</h3>
+                <!-- Filter buttons for image categories. These buttons also call JavaScript functions. -->
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <button class="gallery-category-button active-category" onclick="filterImages('all', this)">All Photos</button>
+                    <button class="gallery-category-button" onclick="filterImages('art', this)">Art</button>
+                    <button class="gallery-category-button" onclick="filterImages('fashion', this)">Fashion</button>
+                    <button class="gallery-category-button" onclick="filterImages('product', this)">Product</button>
+                    <button class="gallery-category-button" onclick="filterImages('documentary_photo', this)">Documentary</button>
+                    <button class="gallery-category-button" onclick="filterImages('wildlife', this)">Wildlife</button>
+                    <button class="gallery-category-button" onclick="filterImages('nature', this)">Nature</button>
+                    <!-- Add more image categories here by adding new buttons and corresponding 'data-category' values -->
+                </div>
+                <!-- Grid for displaying image cards. JavaScript will toggle visibility based on filter selection. -->
+                <div id="image-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- Example Image Cards. Update 'src' with your image paths. -->
+                    <div class="image-card card" data-category="art">
+                        <img src="images/art_photo_1.jpg" alt="Abstract Art Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Art+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Abstract Art</h4>
+                            <p class="text-gray-600 text-sm">Exploring shapes and shadows.</p>
+                        </div>
+                    </div>
+                    <div class="image-card card" data-category="fashion">
+                        <img src="images/fashion_photo_1.jpg" alt="Fashion Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Fashion+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Spring Collection</h4>
+                            <p class="text-gray-600 text-sm">Vibrant styles and poses.</p>
+                        </div>
+                    </div>
+                    <div class="image-card card" data-category="product">
+                        <img src="images/product_photo_1.jpg" alt="Product Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Product+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Luxury Watch</h4>
+                            <p class="text-gray-600 text-sm">Detail-oriented product photography.</p>
+                        </div>
+                    </div>
+                    <div class="image-card card" data-category="documentary_photo">
+                        <img src="images/documentary_photo_1.jpg" alt="Documentary Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Documentary+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Streets of Old Delhi</h4>
+                            <p class="text-gray-600 text-sm">Capturing everyday moments.</p>
+                        </div>
+                    </div>
+                    <div class="image-card card" data-category="wildlife">
+                        <img src="images/wildlife_photo_1.jpg" alt="Wildlife Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Wildlife+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Curious Cub</h4>
+                            <p class="text-gray-600 text-sm">A glimpse into the wild.</p>
+                        </div>
+                    </div>
+                    <div class="image-card card" data-category="nature">
+                        <img src="images/nature_photo_1.jpg" alt="Nature Photography" class="w-full h-48 object-cover rounded-t-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Nature+Photo+1'">
+                        <div class="p-4">
+                            <h4 class="font-medium text-gray-800">Alpine Serenity</h4>
+                            <p class="text-gray-600 text-sm">Breathtaking landscapes.</p>
+                        </div>
+                    </div>
+                    <!-- Add more image examples for each category, updating paths and descriptions -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <!-- This footer is consistent across all pages -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
+                <a href="https://twitter.com/yourhandle" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
+                <a href="https://linkedin.com/in/yourhandle" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png" alt="LinkedIn"></a>
+                <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for dynamic functionalities on the Gallery page -->
+    <script>
+        /**
+         * Filters video cards displayed in the gallery.
+         * Shows cards if their category matches the selected category or if 'all' is selected.
+         * Also updates the active state of the filter buttons.
+         * @param {string} category - The category to filter by ('all' or a specific category like 'cinematic').
+         * @param {HTMLElement} clickedButton - The button element that was clicked to trigger the filter.
+         */
+        function filterVideos(category, clickedButton) {
+            const videoCards = document.querySelectorAll('.video-card'); // Get all video card elements
+            videoCards.forEach(card => {
+                // Determine visibility based on category
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block'; // Make the card visible
+                } else {
+                    card.style.display = 'none'; // Hide the card
+                }
+            });
+
+            // Update active button styling:
+            // 1. Find all video filter buttons and remove the 'active-category' class
+            const videoFilterButtons = document.querySelectorAll('.flex.flex-wrap.justify-center.gap-4 button[onclick^="filterVideos"]');
+            videoFilterButtons.forEach(button => {
+                button.classList.remove('active-category');
+            });
+            // 2. Add the 'active-category' class to the button that was just clicked
+            clickedButton.classList.add('active-category');
+        }
+
+        /**
+         * Filters image cards displayed in the gallery.
+         * Shows cards if their category matches the selected category or if 'all' is selected.
+         * Also updates the active state of the filter buttons.
+         * @param {string} category - The category to filter by ('all' or a specific category like 'art').
+         * @param {HTMLElement} clickedButton - The button element that was clicked to trigger the filter.
+         */
+        function filterImages(category, clickedButton) {
+            const imageCards = document.querySelectorAll('.image-card'); // Get all image card elements
+            imageCards.forEach(card => {
+                // Determine visibility based on category
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block'; // Make the card visible
+                } else {
+                    card.style.display = 'none'; // Hide the card
+                }
+            });
+
+            // Update active button styling:
+            // 1. Find all image filter buttons and remove the 'active-category' class
+            const imageFilterButtons = document.querySelectorAll('.flex.flex-wrap.justify-center.gap-4 button[onclick^="filterImages"]');
+            imageFilterButtons.forEach(button => {
+                button.classList.remove('active-category');
+            });
+            // 2. Add the 'active-category' class to the button that was just clicked
+            clickedButton.classList.add('active-category');
+        }
+
+        // Initialize gallery filters when the DOM is fully loaded.
+        // This ensures that when the gallery page loads, all items are shown by default,
+        // and the 'All Videos' and 'All Photos' buttons are highlighted.
+        document.addEventListener('DOMContentLoaded', () => {
+            // Find the 'All Videos' button and trigger its filter function
+            const initialVideoButton = document.querySelector('button[onclick="filterVideos(\'all\', this)"]');
+            if (initialVideoButton) {
+                filterVideos('all', initialVideoButton);
+            }
+
+            // Find the 'All Photos' button and trigger its filter function
+            const initialImageButton = document.querySelector('button[onclick="filterImages(\'all\', this)"]');
+            if (initialImageButton) {
+                filterImages('all', initialImageButton);
+            }
+        });
+    </script>
+</body>
+</html>
