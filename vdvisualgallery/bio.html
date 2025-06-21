@@ -7,19 +7,47 @@
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Import Google Font 'Inter' for modern typography */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Import Google Font 'Poppins' for modern typography (consistent with index.html) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
-            /* Using colors inspired by the provided image: light neutral background, dark text */
+            font-family: 'Poppins', sans-serif; /* Changed from Inter to Poppins for consistency */
             background-color: #F7F7F7; /* A light, neutral background */
             color: #333333; /* Darker text for readability */
+            padding-bottom: 0; /* No bottom padding, as mobile nav is not present on this page */
+            overflow-x: hidden;
         }
-        /* Styling for navigation links */
-        .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+
+        /* --- Top Navbar (Desktop Only) - Consistent with index.html --- */
+        .top-navbar {
+            background-color: #1A0D3F; /* Deep purple/blue background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
-        /* Styling for main section headings with an underline effect */
+        .navbar-logo-text {
+            color: #E0BBE4; /* Lighter purple/pink for VD */
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+        /* Navigation links - now with pure white text and curved edges, no active state */
+        .top-navbar .navbar-link {
+            background: none;
+            @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out; /* Ensured rounded-full for curved edges */
+            font-weight: 500;
+            box-shadow: none;
+            white-space: nowrap;
+            color: #FFFFFF; /* Explicitly set text to white for clarity */
+        }
+        .top-navbar .navbar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            color: #FFFFFF; /* Keep text white on hover */
+        }
+        /* No '.active' styling for navbar links */
+
+        /* --- Global Styles for Main Content Sections --- */
         .section-heading {
             @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
         }
@@ -28,47 +56,52 @@
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #D3D3D3; /* A soft grey from the image palette */
+            background-color: #D3D3D3;
             margin: 1rem auto 0;
-            border-radius: 9999px; /* Fully rounded corners for the underline */
+            border-radius: 9999px;
         }
-        /* Styling for gallery category filter buttons */
-        .gallery-category-button {
-            @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
-                   border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400;
-        }
-        /* Active state for gallery category buttons (JavaScript will add this class) */
-        .active-category {
-             @apply bg-gray-700 text-white border-gray-700 hover:bg-gray-800 hover:border-gray-800;
-        }
-        /* Styling for individual gallery item cards */
         .card {
             @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105;
         }
-        /* Styling for form input fields */
+
+        /* Existing styles from bio.html that are still relevant */
+        .gallery-category-button {
+            @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
+                     border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400;
+        }
+        .active-category {
+             @apply bg-gray-700 text-white border-gray-700 hover:bg-gray-800 hover:border-gray-800;
+        }
         .input-field {
             @apply w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500;
         }
-        /* Styling for form submission button */
         .submit-button {
             @apply bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300;
         }
-        /* Color palette inspiration from the image:
-           - Main background/neutrals: Light greys, off-white
-           - Accents: Darker grey for text/elements.
-           - The primary color scheme relies on a sophisticated grayscale palette.
-        */
+
+        /* Responsive display for navbars - this page only uses top-navbar */
+        @media (max-width: 767px) {
+            .top-navbar {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .top-navbar {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <!-- Header & Navigation (Desktop Only - using .top-navbar class) -->
+    <header class="top-navbar sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
-            <ul class="flex space-x-2 md:space-x-4">
+            <a href="index.html" class="navbar-logo-text">VD</a>
+            <ul class="flex space-x-3 items-center">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
-                <li><a href="bio.html" class="navbar-link">Profile </a></li>
+                <li><a href="bio.html" class="navbar-link">Profile</a></li>
                 <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
                 <li><a href="contact.html" class="navbar-link">Contact</a></li>
             </ul>
@@ -78,27 +111,28 @@
     <main>
         <!-- Profile/Bio Section -->
         <section id="bio" class="container mx-auto px-4 py-16 md:py-24">
-            <h2 class="section-heading">About Me</h2>
+            <h2 class="section-heading font-bold">About Me</h2> <!-- Added font-bold explicitly -->
             <div class="flex flex-col md:flex-row items-center md:items-start gap-12 max-w-5xl mx-auto">
                 <div class="md:w-1/3 flex justify-center">
                     <img src="images/VD_PP.jpeg" alt="Your Portrait" class="rounded-xl shadow-lg w-full max-w-xs md:max-w-none object-cover h-auto">
                 </div>
                 <div class="md:w-2/3 text-lg text-gray-700">
-                    <p class="mb-6">
-                        Hello! I'm Varun Devang, a passionate photographer dedicated to capturing the essence of life through my lens. With 2 years of experience, I specialize in areas like product,fashion, wildlife & documentary. My journey began with a simple click, evolving into a deep fascination with light, composition, and the stories hidden in every frame.
-                    </p>
-                    <p class="mb-6">
-                        I believe photography is more than just taking pictures; it's about preserving emotions, freezing fleeting moments, and telling compelling narratives. Whether it's the raw beauty of nature, the vibrant energy of a fashion shoot, or the intricate details of a product, I strive to create images that resonate and leave a lasting impression.
-                    </p>
-                    <p>
-                        Beyond the technical aspects, I bring a unique artistic vision to every project, ensuring that each photograph is not just seen, but felt. Let's connect and create something beautiful together!
-                    </p>
-                    <div class="mt-8 flex justify-center md:justify-start space-x-6">
-                        <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/twitterx--v2.png" alt="Twitter"></a>
-                        <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/instagram-new--v2.png" alt="Instagram"></a>
-                        <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/youtube.png" alt="Youtube"></a>
-                        <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/whatsapp--v1.png" alt="WhatsApp"></a>
-            </div>
+                    <div class="pl-4 md:pl-0">
+                        <p class="mb-6 text-justify"> <!-- Added text-justify -->
+                            Hello! I'm Varun Devang, a passionate photographer dedicated to capturing the essence of life through my lens. With 2 years of experience, I specialize in areas like product,fashion, wildlife & documentary. My journey began with a simple click, evolving into a deep fascination with light, composition, and the stories hidden in every frame.
+                        </p>
+                        <p class="mb-6 text-justify"> <!-- Added text-justify -->
+                            I believe photography is more than just taking pictures; it's about preserving emotions, freezing fleeting moments, and telling compelling narratives. Whether it's the raw beauty of nature, the vibrant energy of a fashion shoot, or the intricate details of a product, I strive to create images that resonate and leave a lasting impression.
+                        </p>
+                        <p class="text-justify"> <!-- Added text-justify -->
+                            Beyond the technical aspects, I bring a unique artistic vision to every project, ensuring that each photograph is not just seen, but felt. Let's connect and create something beautiful together!
+                        </p>
+                        <div class="mt-8 flex justify-center md:justify-start space-x-6">
+                            <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/twitterx--v2.png" alt="Twitter"></a>
+                            <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/instagram-new--v2.png" alt="Instagram"></a>
+                            <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/youtube.png" alt="Youtube"></a>
+                            <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/whatsapp--v1.png" alt="WhatsApp"></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,7 +148,6 @@
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
                 <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
-            </div>
             </div>
         </div>
     </footer>

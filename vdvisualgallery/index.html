@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VD- Home</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <title>VD - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Import Google Font 'Inter' for modern typography */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Import Google Font 'Poppins' for modern typography */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
-            /* Using colors inspired by the provided image: light neutral background, dark text */
-            background-color: #F7F7F7; /* A light, neutral background */
-            color: #333333; /* Darker text for readability */
+            font-family: 'Poppins', sans-serif;
+            background-color: #F7F7F7;
+            color: #333333;
+            padding-bottom: 5rem; /* Adjust based on your bottom nav height */
+            overflow-x: hidden;
         }
-        /* Styling for navigation links */
-        .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
-        }
-        /* Styling for main section headings with an underline effect (not used on home but kept for consistency if desired) */
+
+        /* --- Global Styles for Main Content Sections --- */
         .section-heading {
             @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
         }
@@ -28,23 +26,143 @@
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #D3D3D3; /* A soft grey from the image palette */
+            background-color: #D3D3D3;
             margin: 1rem auto 0;
-            border-radius: 9999px; /* Fully rounded corners for the underline */
+            border-radius: 9999px;
         }
-        /* General card styling (not directly used on home but part of shared styling) */
         .card {
             @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105;
+        }
+
+        /* --- Top Navbar (Desktop Only) - No active state styling --- */
+        .top-navbar {
+            background-color: #1A0D3F; /* Deep purple/blue background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .navbar-logo-text {
+            color: #E0BBE4; /* Lighter purple/pink for VD */
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+        /* Plain links for desktop nav - all links will appear as default */
+        .top-navbar .navbar-link {
+            background: none;
+            @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out;
+            font-weight: 500;
+            box-shadow: none;
+            white-space: nowrap;
+            color: #FFFFFF; /* All text pure white */
+        }
+        .top-navbar .navbar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            color: #FFFFFF;
+        }
+        /* Removed .top-navbar .navbar-link.active styling */
+
+        /* --- Bottom Navigation Bar (Mobile Only) - No active state styling --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1A0D3F; /* Deep purple/blue background */
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+            height: 4.5rem;
+            z-index: 50;
+            display: flex;
+            justify-content: space-around; /* Distribute items evenly */
+            align-items: center;
+            padding-bottom: env(safe-area-inset-bottom);
+            overflow: hidden;
+        }
+
+        .bottom-nav-item {
+            @apply flex flex-col items-center justify-center text-center text-xs font-semibold transition-all duration-300 p-1 cursor-pointer;
+            color: #FFFFFF; /* All text/icons pure white for maximum visibility */
+            position: relative;
+            height: 100%;
+            flex-grow: 1; /* Allow items to grow to fill space */
+            max-width: 25%; /* Limit width, ensuring space for 4 items */
+            border-radius: 9999px; /* Make the base item rounded (for consistent hover/active shape) */
+        }
+
+        .bottom-nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.08); /* Subtle light background on hover */
+            color: #FFFFFF; /* Ensure text remains white */
+        }
+
+        .bottom-nav-item svg {
+            @apply w-6 h-6 mb-1;
+            transition: transform 0.3s ease-out, color 0.3s ease-out;
+            transform-origin: center bottom;
+            color: #FFFFFF; /* Ensure icon is white */
+        }
+
+        .bottom-nav-item span {
+            position: absolute;
+            bottom: 0.75rem;
+            opacity: 0; /* Hidden by default */
+            transform: translateY(5px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            white-space: nowrap;
+            color: #FFFFFF; /* Ensure text is white */
+        }
+
+        /* Removed .bottom-nav-item.active styling entirely */
+
+        /* Keyframe for pulse animation (no longer directly used by buttons, but keeping for reference) */
+        @keyframes pulse-dark {
+            0%, 100% {
+                transform: translateY(-25%) scale(1);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: translateY(-30%) scale(1.05);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* Responsive display for navbars */
+        @media (max-width: 767px) {
+            .top-navbar {
+                display: none;
+            }
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: 4.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .top-navbar {
+                display: block;
+            }
+            .bottom-nav {
+                display: none;
+            }
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        main {
+            padding-bottom: 0;
         }
     </style>
 </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="top-navbar sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
-            <ul class="flex space-x-2 md:space-x-4">
+            <a href="index.html" class="navbar-logo-text">VD</a>
+
+            <ul class="flex space-x-3 items-center">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
                 <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
@@ -54,17 +172,13 @@
     </header>
 
     <main>
-        <!-- Home Section Content -->
         <section id="home" class="relative bg-gradient-to-br from-gray-100 to-white min-h-screen flex items-center justify-center text-center p-8 overflow-hidden">
-            <!-- Custom background image for the hero section -->
-            <!-- IMPORTANT: Replace 'images/my_homepage_background.jpg' with the actual path and filename of your image -->
             <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('images/home_bg.JPG');"></div>
             <div class="relative z-10 p-8 rounded-xl bg-white bg-opacity-80 shadow-2xl max-w-4xl mx-auto">
                 <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">Capture Your Moment Through Our Scope</h1>
                 <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
                     Welcome to the world of visual storytelling. Explore diverse perspectives and timeless moments captured through the lens.
                 </p>
-                <!-- Link to the gallery page -->
                 <a href="gallery.html" class="inline-block bg-gray-700 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all duration-300 shadow-md">
                     Explore Gallery
                 </a>
@@ -72,12 +186,37 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <nav class="bottom-nav md:hidden">
+        <a href="index.html" class="bottom-nav-item" data-path="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125h9.75a1.125 1.125 0 001.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="bio.html" class="bottom-nav-item" data-path="bio.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            <span>Profile</span>
+        </a>
+        <a href="gallery.html" class="bottom-nav-item" data-path="gallery.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175 0 1.8.847 3.398 2.15 4.54a27.02 27.02 0 012.324 2.536 2.307 2.307 0 012.92-.027l2.872-2.12c.563-.416.81-.663 1.03-.82a.75.75 0 00.322-1.077 3.376 3.376 0 00-2.314-3.374c-.38-.054-.757-.112-1.134-.175a2.31 2.31 0 01-1.637-.665c-.244-.216-.481-.462-.707-.733-.242-.284-.467-.581-.676-.893a2.31 2.31 0 01-1.637-.665zM12 6a.75.75 0 110-1.5.75.75 0 010 1.5zm0 1.5a.75.75 0 110-1.5.75.75 0 010 1.5zM12 9a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+            </svg>
+            <span>Gallery</span>
+        </a>
+        <a href="contact.html" class="bottom-nav-item" data-path="contact.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.906l-11.25 4.155a2.25 2.25 0 01-2.134 0L2.25 8.999M12 12h.008v.008H12V12zm.75 4.5h.008v.008H12.75V16.5zm-.75-9h.008v.008H12V7.5z" />
+            </svg>
+            <span>Contact</span>
+        </a>
+    </nav>
+
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
                 <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
@@ -85,5 +224,37 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // The setActiveNavLinks function is now redundant as there is no "active" styling.
+        // However, I'm keeping it for the moment but removing the class toggling.
+        function setActiveNavLinks() {
+            const currentPath = window.location.pathname.split('/').pop();
+            const currentPage = currentPath === '' ? 'index.html' : currentPath;
+
+            // Handle Top Navigation (Desktop) - No active class toggling
+            const topNavLinks = document.querySelectorAll('.top-navbar .navbar-link');
+            topNavLinks.forEach(link => {
+                // link.classList.remove('active'); // Removed this line
+                // const linkPath = link.getAttribute('href').split('/').pop();
+                // if (linkPath === currentPage) {
+                //     link.classList.add('active'); // Removed this line
+                // }
+            });
+
+            // Handle Bottom Navigation (Mobile) - No active class toggling
+            const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+            bottomNavItems.forEach(item => {
+                // item.classList.remove('active'); // Removed this line
+                // const itemPath = item.getAttribute('data-path');
+                // if (itemPath === currentPage) {
+                //     item.classList.add('active'); // Removed this line
+                // }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setActiveNavLinks);
+        window.addEventListener('hashchange', setActiveNavLinks);
+    </script>
 </body>
 </html>

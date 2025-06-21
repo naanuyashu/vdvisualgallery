@@ -3,53 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VD- Contact</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <title>VD - Contact</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Import Google Font 'Inter' for modern typography */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Import Google Font 'Poppins' for modern typography (consistent with index.html) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
         body {
-            font-family: 'Inter', sans-serif;
-            /* Using colors inspired by the provided image: light neutral background, dark text */
-            background-color: #F7F7F7; /* A light, neutral background */
+            font-family: 'Poppins', sans-serif; /* Changed from Inter to Poppins for consistency */
+            background-color: #F7F7F7; /* Consistent light background with other pages */
             color: #333333; /* Darker text for readability */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        /* Styling for navigation links */
-        .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+
+        /* --- Top Navbar (Desktop Only) - Consistent with index.html --- */
+        .top-navbar {
+            background-color: #1A0D3F; /* Deep purple/blue background */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
         }
-        /* Styling for main section headings with an underline effect */
+        .navbar-logo-text {
+            color: #E0BBE4; /* Lighter purple/pink for VD */
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+        /* Navigation links - now with pure white text and curved edges, no active state */
+        .top-navbar .navbar-link {
+            background: none;
+            @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out; /* Ensured rounded-full for curved edges */
+            font-weight: 500;
+            box-shadow: none;
+            white-space: nowrap;
+            color: #FFFFFF; /* Explicitly set text to white for clarity */
+        }
+        .top-navbar .navbar-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: none;
+            color: #FFFFFF; /* Keep text white on hover */
+        }
+        /* No '.active' styling for navbar links */
+
+
+        /* Section Heading styles - consistent with other pages */
         .section-heading {
-            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative; /* Consistent font size and margin */
+            color: #222222; /* Darker text for headings */
         }
+
         .section-heading::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 80px; /* Consistent underline width */
             height: 4px;
-            background-color: #D3D3D3; /* A soft grey from the image palette */
+            background-color: #D3D3D3; /* Consistent soft grey */
             margin: 1rem auto 0;
-            border-radius: 9999px; /* Fully rounded corners for the underline */
+            border-radius: 9999px;
         }
-        /* Styling for form input fields (less relevant for embedded form but kept for consistency) */
-        .input-field {
-            @apply w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500;
-        }
-        /* Styling for form submission button (less relevant for embedded form but kept for consistency) */
-        .submit-button {
-            @apply bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300;
-        }
+
         /* Responsive styling for the Google Form iframe */
         .google-form-container {
             position: relative;
             width: 100%;
-            padding-bottom: 75%; /* Adjust this value to control iframe aspect ratio (e.g., 56.25% for 16:9) */
+            padding-bottom: 75%; /* Adjust this value to control iframe aspect ratio */
             height: 0;
             overflow: hidden;
-            margin-top: 2rem;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+            margin-top: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Added subtle shadow to iframe */
         }
         .google-form-container iframe {
             position: absolute;
@@ -58,16 +81,98 @@
             width: 100%;
             height: 100%;
             border: 0;
+            background-color: #fcfcfc;
+        }
+
+        /* --- Custom Styles for Attractive Contact Page --- */
+
+        /* Contact Section Background */
+        #contact-hero {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e0e0e0 100%); /* Subtle gradient */
+            padding: 3rem 0; /* Adjusted padding for all screen sizes */
+            min-height: 80vh; /* Ensure it's tall enough, especially on smaller screens */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Main Contact Card Styling - Centered and Responsive */
+        .contact-card {
+            background-color: #FFFFFF;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem; /* Adjusted padding for smaller screens */
+            max-width: 900px;
+            width: calc(100% - 2rem); /* Take up full width minus horizontal padding on small screens */
+            box-sizing: border-box;
+            border: 1px solid #EAEAEA;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive padding for larger screens */
+        @media (min-width: 768px) { /* md breakpoint */
+            .contact-card {
+                padding: 3rem; /* Restore generous padding on medium screens and up */
+            }
+        }
+
+        /* Contact Info Styling */
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem; /* Slightly reduced gap for tighter fit on small screens */
+            font-size: 1rem; /* Slightly smaller font size for mobile */
+            color: #555555;
+            margin-bottom: 0.75rem; /* Adjusted margin */
+            font-weight: 500;
+            text-align: center;
+            flex-wrap: wrap; /* Allow items to wrap if screen is too narrow */
+        }
+        .contact-info strong {
+            font-weight: 600;
+            white-space: nowrap; /* Prevent "Email:" or "Phone:" from breaking */
+        }
+        .contact-info img {
+            width: 20px; /* Slightly smaller icons for mobile */
+            height: 20px;
+            /* Filter to make icons darker if they are black on white bg, now 555555 */
+            filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(50%) contrast(100%);
+        }
+        /* Restore larger font/icon size for larger screens */
+        @media (min-width: 768px) {
+            .contact-info p {
+                gap: 0.75rem;
+                font-size: 1.125rem;
+            }
+            .contact-info img {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* Responsive display for navbars - this page only uses top-navbar */
+        @media (max-width: 767px) {
+            .top-navbar {
+                display: none; /* Hide desktop nav on mobile */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .top-navbar {
+                display: block; /* Show desktop nav on desktop */
+            }
         }
     </style>
 </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="top-navbar sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
-            <ul class="flex space-x-2 md:space-x-4">
+            <a href="index.html" class="navbar-logo-text">VD</a>
+            <ul class="flex space-x-3 items-center">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
                 <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
@@ -77,35 +182,41 @@
     </header>
 
     <main>
-        <!-- Contact Section Content -->
-        <section id="contact" class="container mx-auto px-4 py-16 md:py-24">
-            <h2 class="section-heading">Get In Touch</h2>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <p class="text-center text-lg text-gray-700 mb-8">
-                    Have a project in mind or just want to say hello? Fill out the form below:
-                </p>
-                <!-- Google Form Embedding Area -->
-                <div class="google-form-container">
-                    <!-- IMPORTANT: Replace the 'src' URL below with the embed URL from your own Google Form -->
-                    <iframe src="https://forms.gle/Xc1cjjerDqvHwvNH6" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                </div>
+        <section id="contact-hero" class="relative">
+            <div class="container mx-auto px-4">
+                <h2 class="section-heading font-bold">Get In Touch</h2>
+                <div class="contact-card">
+                    <p class="text-center text-base md:text-xl text-gray-700 mb-6 md:mb-8 max-w-2xl mx-auto px-2">
+                        We'd love to hear from you! Whether it's a project inquiry, collaboration, or just a friendly hello, feel free to reach out.
+                    </p>
+                    <div class="google-form-container">
+                        <iframe src="https://forms.gle/Xc1cjjerDqvHwvNH6" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                    </div>
 
-                <div class="mt-12 text-center text-gray-700">
-                    <p class="mb-2"><strong>Email:</strong> varundevang505@gmail.com</p>
-                    <p class="mb-2"><strong>Phone:</strong> +91 9590997505</p>
-                    <p><strong>Location:</strong> [Mysuru,Karnataka,India]</p>
+                    <div class="mt-8 md:mt-12 text-center contact-info">
+                        <p>
+                            <img src="https://img.icons8.com/ios-filled/24/555555/mail.png" alt="Email Icon" aria-hidden="true">
+                            <strong>Email:</strong> <a href="mailto:varundevang505@gmail.com" class="hover:underline text-blue-600">varundevang505@gmail.com</a>
+                        </p>
+                        <p>
+                            <img src="https://img.icons8.com/ios-filled/24/555555/phone.png" alt="Phone Icon" aria-hidden="true">
+                            <strong>Phone:</strong> <a href="tel:+919590997505" class="hover:underline text-blue-600">+91 9590997505</a>
+                        </p>
+                        <p>
+                            <img src="https://img.icons8.com/ios-filled/24/555555/marker.png" alt="Location Icon" aria-hidden="true">
+                            <strong>Location:</strong> Mysuru, Karnataka, India
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
-               <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
                 <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
