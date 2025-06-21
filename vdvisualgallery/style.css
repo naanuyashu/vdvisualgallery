@@ -1,19 +1,44 @@
-/* Import Google Font 'Poppins' for modern typography - CONSISTENT ACROSS ALL PAGES */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap'); /* */
+/* style.css */
 
-/* General body styling - Consistent with other pages */
+/* Import Google Font 'Poppins' for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 body {
-    font-family: 'Poppins', sans-serif; /* */
-    background-color: #F7F7F7; /* Consistent light background with other pages */
+    font-family: 'Poppins', sans-serif;
+    background-color: #F7F7F7;
     color: #333333;
-    line-height: 1.6;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    padding-bottom: 5rem; /* Adjust based on your bottom nav height */
+    overflow-x: hidden; /* Prevent horizontal scroll from overflowing elements */
 }
 
-/* --- Top Navbar (Desktop Only) - Consistent Across ALL Pages --- */
+/* Global responsive image rule */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Removes extra space below images */
+}
+
+/* --- Global Styles for Main Content Sections --- */
+.section-heading {
+    @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+}
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #D3D3D3;
+    margin: 1rem auto 0;
+    border-radius: 9999px;
+}
+.card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105;
+}
+
+/* --- Top Navbar (Desktop Only) - No active state styling --- */
 .top-navbar {
     background-color: #1A0D3F; /* Deep purple/blue background */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -23,371 +48,133 @@ body {
     font-weight: 800;
     letter-spacing: -0.05em;
 }
-/* Navigation links - now with pure white text and curved edges, no active state */
+/* Plain links for desktop nav - all links will appear as default */
 .top-navbar .navbar-link {
     background: none;
-    @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out; /* Ensured rounded-full for curved edges */
+    @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out;
     font-weight: 500;
     box-shadow: none;
     white-space: nowrap;
-    color: #FFFFFF; /* Explicitly set text to white for clarity */
+    color: #FFFFFF; /* All text pure white */
 }
 .top-navbar .navbar-link:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* */
+    background-color: rgba(255, 255, 255, 0.1);
     transform: none;
-    color: #FFFFFF; /* Keep text white on hover */
+    color: #FFFFFF;
 }
 
-/* Responsive display for navbars - this page only uses top-navbar */
-@media (max-width: 767px) { /* */
-    .top-navbar {
-        display: none; /* Hide desktop nav on mobile */
-    }
-}
-@media (min-width: 768px) { /* */
-    .top-navbar {
-        display: block; /* Show desktop nav on desktop */
-    }
-}
-
-/* Section Heading styles - Consistent with other pages */
-.section-heading {
-    @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
-    color: #222222;
-    font-weight: 700;
-}
-
-.section-heading::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background-color: #D3D3D3; /* Consistent soft grey */
-    margin: 1rem auto 0;
-    border-radius: 9999px;
-}
-
-/* Card base styling (applies to image cards) - Consistent with other pages */
-.card {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    transform: none;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Unified gallery controls bar */
-.gallery-controls-bar {
-    display: flex;
-    justify-content: space-between; /* Distributes items: left, center, right */
-    align-items: center; /* Vertically aligns all items */
-    margin-bottom: 2.5rem;
-    padding: 1rem 1.5rem; /* Consistent padding */
-    background-color: #FFFFFF; /* Fallback background color */
-    border: 1px solid #E0E0E0;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-
-    /* --- Background Image Properties (Keep your path here) --- */
-    /* If you want a background image, uncomment and replace with your path */
-    /* background-image: url('path/to/your/image.jpg'); */
-    background-size: cover; /* Ensures the image covers the entire element */
-    background-position: center center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    /* Adjust text color here if your image is dark, e.g., color: #FFFFFF; */
-}
-
-/* Category Dropdown Container */
-.category-dropdown-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0;
-}
-
-/* Category Dropdown Menu Styling - NO BOXES */
-.category-dropdown {
-    @apply px-2 py-1 rounded-sm text-base font-medium; /* Reduced padding, rounded-sm for subtle shape */
-    border: none; /* Removed border */
-    color: #333333; /* Adjusted for better contrast on background image */
-    background-color: transparent; /* Make background transparent to show image */
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    /* Custom arrow for dropdown, adjust fill color if needed */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%20197.6l-14.7-14.7c-4.4-4.4-11.6-4.4-16%200L146.2%20259.9%2036.1%20150.2c-4.4-4.4-11.6-4.4-16%200L5%20164.9c-4.4%204.4-4.4%2011.6%200%2016l133.2%20133.2c4.4%204.4%2011.6%204.4%2016%200l133.2-133.2c4.4-4.4%204.4-11.6%200-16z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center; /* Adjusted arrow position */
-    background-size: 0.6em; /* Slightly smaller arrow */
-    padding-right: 1.5rem; /* Adjusted right padding for arrow */
-    transition: all 0.2s ease-in-out;
-    font-weight: 600; /* Keep dropdown text bold */
-}
-
-.category-dropdown:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-}
-
-.category-dropdown:focus {
-    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2); /* Keep subtle focus outline */
-}
-
-/* Styling for the "Photos" heading - now centered */
-.photos-heading {
-    font-size: 2.25rem;
-    font-weight: 700; /* Make Photos heading bold */
-    color: #333333; /* Adjusted for better contrast on background image */
-    margin-bottom: 0;
-    text-align: center;
-    flex-grow: 1;
-    white-space: nowrap;
-}
-
-/* Sort Dropdown Container */
-.sort-dropdown-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0;
-}
-
-.sort-dropdown-container label {
-    font-size: 0.9rem;
-    color: #333333; /* Adjusted for better contrast on background image */
-    font-weight: 600; /* Make "Sort by:" label bold */
-    white-space: nowrap;
-}
-
-/* Sorting dropdown itself - NO BOXES */
-.sort-dropdown {
-    @apply px-2 py-1 rounded-sm text-sm font-medium; /* Reduced padding, rounded-sm for subtle shape */
-    border: none; /* Removed border */
-    color: #333333; /* Adjusted for better contrast on background image */
-    background-color: transparent; /* Make background transparent to show image */
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    /* Custom arrow for dropdown, adjust fill color if needed */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%20viewBox%3D%220%200%20292.4%20292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%20197.6l-14.7-14.7c-4.4-4.4-11.6-4.4-16%200L146.2%20259.9%2036.1%20150.2c-4.4-4.4-11.6-4.4-16%200L5%20164.9c-4.4%204.4-4.4%2011.6%200%2016l133.2%20133.2c4.4%204.4%2011.6%204.4%2016%200l133.2-133.2c4.4-4.4%204.4-11.6%200-16z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 0.5rem center; /* Adjusted arrow position */
-    background-size: 0.6em; /* Slightly smaller arrow */
-    padding-right: 1.5rem; /* Adjusted right padding for arrow */
-    transition: all 0.2s ease-in-out;
-    font-weight: 600; /* Keep sort dropdown text bold */
-}
-
-.sort-dropdown:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
-}
-
-.sort-dropdown:focus {
-    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2); /* Keep subtle focus outline */
-}
-
-/* Image Card Specific Styles to maintain aspect ratio and grayscale filter */
-.image-card img {
-    width: 100%;
-    height: auto;
-    max-height: 300px;
-    object-fit: contain;
-    background-color: #E8E8E8;
-    border-radius: 0.75rem 0.75rem 0 0;
-    cursor: pointer;
-    display: block;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease-in-out;
-}
-
-.image-card img:hover {
-    filter: grayscale(0%);
-}
-
-.image-card > div:first-child {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 200px;
-    background-color: #E8E8E8;
-    border-radius: 0.75rem 0.75rem 0 0;
-    overflow: hidden;
-}
-
-.image-card .p-4 {
-    padding: 1rem;
-}
-
-.image-card h4 {
-    font-weight: 700; /* Make image card titles bold */
-    color: #333333;
-}
-
-.image-card p {
-    color: #666666;
-    font-size: 0.875rem;
-    font-weight: 500; /* Make image card descriptions slightly bolder */
-}
-
-
-/* Lightbox Styles - Blank and White Theme */
-#lightbox-overlay {
-    display: none;
+/* --- Bottom Navigation Bar (Mobile Only) --- */
+.bottom-nav {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    justify-content: center;
+    background-color: #1A0D3F; /* Deep purple/blue background */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    height: 4.5rem;
+    z-index: 50;
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly */
     align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease;
+    padding-bottom: env(safe-area-inset-bottom);
+    overflow: hidden;
 }
 
-#lightbox-overlay.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-#lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #FFFFFF;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    z-index: 1010;
-    padding: 5px 10px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.4);
-}
-
-#lightbox-close:hover {
-    opacity: 1;
-    background-color: rgba(0,0,0,0.6);
-}
-
-#lightbox-content-wrapper {
+.bottom-nav-item {
+    @apply flex flex-col items-center justify-center text-center text-xs font-semibold transition-all duration-300 p-1 cursor-pointer;
+    color: #FFFFFF; /* All text/icons pure white for maximum visibility */
     position: relative;
-    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
+    flex-grow: 1; /* Allow items to grow to fill space */
+    max-width: 25%; /* Limit width, ensuring space for 4 items */
+    border-radius: 9999px; /* Make the base item rounded (for consistent hover/active shape) */
 }
 
-#lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.bottom-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.08); /* Subtle light background on hover */
+    color: #FFFFFF; /* Ensure text remains white */
 }
 
-#lightbox-content img {
-    display: block;
-    max-width: 100%;
-    max-height: calc(100vh - 150px);
-    object-fit: contain;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    filter: grayscale(100%);
+.bottom-nav-item svg {
+    @apply w-6 h-6 mb-1;
+    transition: transform 0.3s ease-out, color 0.3s ease-out;
+    transform-origin: center bottom;
+    color: #FFFFFF; /* Ensure icon is white */
 }
 
-#lightbox-content video {
-    display: block;
-    max-width: 100%;
-    max-height: calc(100vh - 150px);
-    object-fit: contain;
-    margin: 0 auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-    background-color: black;
-}
-
-#lightbox-title {
-    color: #FFFFFF;
-    font-size: 1.5rem;
-    margin-top: 15px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-    font-weight: 700; /* Make lightbox title bold */
-}
-
-.lightbox-nav-arrow {
-    color: #FFFFFF;
+.bottom-nav-item span {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 3rem;
-    cursor: pointer;
-    padding: 10px 15px;
-    border-radius: 50%;
-    background-color: rgba(0,0,0,0.4);
-    z-index: 1005;
-    opacity: 0.7;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    user-select: none;
+    bottom: 0.75rem;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(5px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    white-space: nowrap;
+    color: #FFFFFF; /* Ensure text is white */
 }
 
-.lightbox-nav-arrow:hover {
-    opacity: 1;
-    background-color: rgba(0,0,0,0.6);
+/* Active state for bottom navigation items */
+.bottom-nav-item.active {
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly darker background for active */
+    color: #E0BBE4; /* Lighter purple for active text/icon */
 }
 
-#lightbox-prev {
-    left: 15px;
+.bottom-nav-item.active svg {
+    transform: scale(1.2); /* Slightly enlarge icon */
+    color: #E0BBE4; /* Active icon color */
 }
 
-#lightbox-next {
-    right: 15px;
+.bottom-nav-item.active span {
+    opacity: 1; /* Make text visible */
+    transform: translateY(0); /* Bring text to original position */
+    color: #E0BBE4; /* Active text color */
 }
 
-.error-message {
-    color: #CCCCCC;
-    font-size: 1rem;
-    margin-top: 10px;
-    font-weight: 500; /* Make error messages slightly bolder */
+/* Keyframe for pulse animation (no longer directly used by buttons, but keeping for reference) */
+@keyframes pulse-dark {
+    0%, 100% {
+        transform: translateY(-25%) scale(1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        transform: translateY(-30%) scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
 }
 
-/* Footer - Consistent with other pages */
-footer {
-    background-color: #222222;
-    color: #FFFFFF;
-    padding: 2rem 0;
+/* Responsive display for navbars */
+@media (max-width: 767px) {
+    .top-navbar {
+        display: none;
+    }
+    .bottom-nav {
+        display: flex;
+    }
+    body {
+        padding-bottom: 4.5rem; /* Adjust body padding for mobile nav */
+    }
+    /* Add padding to main content on mobile to prevent content from going under the nav */
+    main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem; /* Add some top padding too */
+    }
+    /* Adjust text sizes for smaller screens if needed (using Tailwind's responsive classes is better) */
+    .section-heading {
+        font-size: 2.5rem; /* Smaller heading for mobile */
+    }
 }
 
-footer p {
-    font-weight: 500;
-}
-
-footer a {
-    color: #AAAAAA;
-    transition: color 0.3s ease;
-    font-weight: 600;
-}
-
-footer a:hover {
-    color: #FFFFFF;
+@media (min-width: 768px) {
+    .top-navbar {
+        display: block;
+    }
+    .bottom-nav {
+        display: none;
+    }
+    body {
+        padding-bottom: 0; /* Remove extra padding for desktop */
+    }
+    main {
+        padding: 0; /* Remove specific mobile padding */
+    }
 }
