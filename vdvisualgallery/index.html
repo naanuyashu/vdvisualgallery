@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VD- Home</title>
-    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Import Google Font 'Inter' for modern typography */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            /* Using colors inspired by the provided image: light neutral background, dark text */
-            background-color: #F7F7F7; /* A light, neutral background */
-            color: #333333; /* Darker text for readability */
+            /* Changed background to a darker color to better contrast with the colorful nav bar */
+            background-color: #1A0033; /* Dark purple/blue inspired by the image */
+            color: #E0E0E0; /* Lighter text for readability, for overall page */
         }
         /* Styling for navigation links */
         .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+            /* Text color white, with subtle hover effect */
+            @apply px-4 py-2 rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-colors duration-300;
         }
-        /* Styling for main section headings with an underline effect (not used on home but kept for consistency if desired) */
+
+        /* Styling for main section headings with an underline effect (kept for consistency if desired) */
         .section-heading {
             @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
         }
@@ -40,44 +41,37 @@
 </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-purple-600 to-pink-500 shadow-lg py-4 sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
-            <ul class="flex space-x-2 md:space-x-4">
+            <a href="index.html" class="text-2xl font-bold text-white">VD</a>
+            <ul class="flex space-x-2 md:space-x-8 items-center">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
                 <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
                 <li><a href="contact.html" class="navbar-link">Contact</a></li>
-            </ul>
+                </ul>
         </nav>
     </header>
 
     <main>
-        <!-- Home Section Content -->
-        <section id="home" class="relative bg-gradient-to-br from-gray-100 to-white min-h-screen flex items-center justify-center text-center p-8 overflow-hidden">
-            <!-- Custom background image for the hero section -->
-            <!-- IMPORTANT: Replace 'images/my_homepage_background.jpg' with the actual path and filename of your image -->
-            <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('images/home_bg.JPG');"></div>
-            <div class="relative z-10 p-8 rounded-xl bg-white bg-opacity-80 shadow-2xl max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">Capture Your Moment Through Our Scope</h1>
-                <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">
+        <section id="home" class="relative min-h-screen flex items-center justify-center text-center p-8 overflow-hidden">
+             <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('images/home_bg.JPG');"></div>
+            <div class="relative z-10 p-8 rounded-xl bg-black bg-opacity-60 shadow-2xl max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">Capture Your Moment Through Our Scope</h1>
+                <p class="text-xl md:text-2xl text-white mb-8 max-w-2xl mx-auto">
                     Welcome to the world of visual storytelling. Explore diverse perspectives and timeless moments captured through the lens.
                 </p>
-                <!-- Link to the gallery page -->
-                <a href="gallery.html" class="inline-block bg-gray-700 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-800 transition-all duration-300 shadow-md">
+                <a href="gallery.html" class="inline-block bg-white bg-opacity-20 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-opacity-30 transition-all duration-300 shadow-md">
                     Explore Gallery
                 </a>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-900 text-gray-300 py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
                 <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
