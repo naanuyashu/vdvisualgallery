@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VD- Contact</title>
-    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Import Google Font 'Inter' for modern typography */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            /* Using colors inspired by the provided image: light neutral background, dark text */
-            background-color: #F7F7F7; /* A light, neutral background */
-            color: #333333; /* Darker text for readability */
+            /* Changed background to a darker color to better contrast with the colorful nav bar */
+            background-color: #1A0033; /* Dark purple/blue inspired by the image */
+            color: #E0E0E0; /* Lighter text for readability, for overall page */
         }
         /* Styling for navigation links */
         .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+            /* Text color white, with subtle hover effect */
+            @apply px-4 py-2 rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-colors duration-300;
         }
+
         /* Styling for main section headings with an underline effect */
         .section-heading {
-            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+            /* Make it bold as requested */
+            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative text-white; /* Added text-white */
         }
         .section-heading::after {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #D3D3D3; /* A soft grey from the image palette */
+            /* Changed underline color for better contrast with dark background */
+            background-color: #A066FF; /* A vibrant color from the gradient palette */
             margin: 1rem auto 0;
             border-radius: 9999px; /* Fully rounded corners for the underline */
         }
@@ -63,10 +66,9 @@
 </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation -->
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-purple-600 to-pink-500 shadow-lg py-4 sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
+            <a href="index.html" class="text-2xl font-bold text-white">VD</a>
             <ul class="flex space-x-2 md:space-x-4">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
@@ -77,35 +79,29 @@
     </header>
 
     <main>
-        <!-- Contact Section Content -->
         <section id="contact" class="container mx-auto px-4 py-16 md:py-24">
-            <h2 class="section-heading">Get In Touch</h2>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <p class="text-center text-lg text-gray-700 mb-8">
+            <h2 class="section-heading text-white font-bold">Get In Touch</h2>
+            <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-xl shadow-lg text-white">
+                <p class="text-center text-lg mb-8">
                     Have a project in mind or just want to say hello? Fill out the form below:
                 </p>
-                <!-- Google Form Embedding Area -->
                 <div class="google-form-container">
-                    <!-- IMPORTANT: Replace the 'src' URL below with the embed URL from your own Google Form -->
                     <iframe src="https://forms.gle/Xc1cjjerDqvHwvNH6" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
                 </div>
 
-                <div class="mt-12 text-center text-gray-700">
-                    <p class="mb-2"><strong>Email:</strong> varundevang505@gmail.com</p>
+                <div class="mt-12 text-gray-200 text-center"> <p class="mb-2"><strong>Email:</strong> varundevang505@gmail.com</p>
                     <p class="mb-2"><strong>Phone:</strong> +91 9590997505</p>
-                    <p><strong>Location:</strong> [Mysuru,Karnataka,India]</p>
+                    <p><strong>Location:</strong> Mysuru, Karnataka, India</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-900 text-gray-300 py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <!-- Social media icons linking to your profiles. Update 'href' attributes. -->
-               <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
                 <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
