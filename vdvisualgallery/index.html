@@ -61,9 +61,8 @@
             transform: none;
             color: #FFFFFF;
         }
-        /* Removed .top-navbar .navbar-link.active styling */
 
-        /* --- Bottom Navigation Bar (Mobile Only) - No active state styling --- */
+        /* --- Bottom Navigation Bar (Mobile Only) --- */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -112,7 +111,22 @@
             color: #FFFFFF; /* Ensure text is white */
         }
 
-        /* Removed .bottom-nav-item.active styling entirely */
+        /* Active state for bottom navigation items */
+        .bottom-nav-item.active {
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly darker background for active */
+            color: #E0BBE4; /* Lighter purple for active text/icon */
+        }
+
+        .bottom-nav-item.active svg {
+            transform: scale(1.2); /* Slightly enlarge icon */
+            color: #E0BBE4; /* Active icon color */
+        }
+
+        .bottom-nav-item.active span {
+            opacity: 1; /* Make text visible */
+            transform: translateY(0); /* Bring text to original position */
+            color: #E0BBE4; /* Active text color */
+        }
 
         /* Keyframe for pulse animation (no longer directly used by buttons, but keeping for reference) */
         @keyframes pulse-dark {
@@ -226,35 +240,28 @@
     </footer>
 
     <script>
-        // The setActiveNavLinks function is now redundant as there is no "active" styling.
-        // However, I'm keeping it for the moment but removing the class toggling.
         function setActiveNavLinks() {
             const currentPath = window.location.pathname.split('/').pop();
             const currentPage = currentPath === '' ? 'index.html' : currentPath;
 
-            // Handle Top Navigation (Desktop) - No active class toggling
+            // Handle Top Navigation (Desktop) - No active class toggling as per your original intent
             const topNavLinks = document.querySelectorAll('.top-navbar .navbar-link');
             topNavLinks.forEach(link => {
-                // link.classList.remove('active'); // Removed this line
-                // const linkPath = link.getAttribute('href').split('/').pop();
-                // if (linkPath === currentPage) {
-                //     link.classList.add('active'); // Removed this line
-                // }
+                // No active class applied for desktop nav
             });
 
-            // Handle Bottom Navigation (Mobile) - No active class toggling
+            // Handle Bottom Navigation (Mobile) - Re-adding active class toggling
             const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
             bottomNavItems.forEach(item => {
-                // item.classList.remove('active'); // Removed this line
-                // const itemPath = item.getAttribute('data-path');
-                // if (itemPath === currentPage) {
-                //     item.classList.add('active'); // Removed this line
-                // }
+                item.classList.remove('active'); // Remove active from all first
+                const itemPath = item.getAttribute('data-path');
+                if (itemPath === currentPage) {
+                    item.classList.add('active'); // Add active to the current page's item
+                }
             });
         }
 
         document.addEventListener('DOMContentLoaded', setActiveNavLinks);
-        window.addEventListener('hashchange', setActiveNavLinks);
     </script>
 </body>
 </html>
