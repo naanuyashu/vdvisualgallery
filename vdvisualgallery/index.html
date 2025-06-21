@@ -149,7 +149,7 @@
                 display: flex;
             }
             body {
-                padding-bottom: 4.5rem;
+                padding-bottom: 4.5rem; /* Adjust body padding for mobile nav */
             }
         }
 
@@ -161,12 +161,12 @@
                 display: none;
             }
             body {
-                padding-bottom: 0;
+                padding-bottom: 0; /* Remove extra padding for desktop */
             }
         }
 
         main {
-            padding-bottom: 0;
+            padding-bottom: 0; /* Ensure main content doesn't have extra bottom padding */
         }
     </style>
 </head>
@@ -242,26 +242,31 @@
     <script>
         function setActiveNavLinks() {
             const currentPath = window.location.pathname.split('/').pop();
-            const currentPage = currentPath === '' ? 'index.html' : currentPath;
+            // If the path is empty (e.g., just the domain), assume it's index.html
+            const currentPage = currentPath === '' || currentPath === 'index.html' ? 'index.html' : currentPath;
 
-            // Handle Top Navigation (Desktop) - No active class toggling as per your original intent
+            // Handle Top Navigation (Desktop) - As per your preference, no active class styling here
             const topNavLinks = document.querySelectorAll('.top-navbar .navbar-link');
             topNavLinks.forEach(link => {
-                // No active class applied for desktop nav
+                // No 'active' class applied or removed for desktop navigation links
             });
 
-            // Handle Bottom Navigation (Mobile) - Re-adding active class toggling
+            // Handle Bottom Navigation (Mobile) - Apply active class for current page
             const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
             bottomNavItems.forEach(item => {
-                item.classList.remove('active'); // Remove active from all first
+                item.classList.remove('active'); // Remove 'active' from all items first
                 const itemPath = item.getAttribute('data-path');
                 if (itemPath === currentPage) {
-                    item.classList.add('active'); // Add active to the current page's item
+                    item.classList.add('active'); // Add 'active' to the matching item
                 }
             });
         }
 
+        // Call the function when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', setActiveNavLinks);
+
+        // Also call it if the URL's hash changes (though not typically needed for multi-page sites)
+        window.addEventListener('hashchange', setActiveNavLinks);
     </script>
 </body>
 </html>
