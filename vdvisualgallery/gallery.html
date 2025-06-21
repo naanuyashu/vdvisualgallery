@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VD- Gallery</title>
+    <title>VD - Gallery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css"> </head>
 <body class="leading-relaxed">
 
-    <header class="top-navbar sticky top-0 z-50"> <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="navbar-logo-text">VD</a> <ul class="flex space-x-3 items-center"> <li><a href="index.html" class="navbar-link">Home</a></li>
+    <header class="top-navbar sticky top-0 z-50">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="index.html" class="navbar-logo-text">VD</a>
+
+            <ul class="flex space-x-3 items-center">
+                <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
                 <li><a href="gallery.html" class="navbar-link">Gallery</a></li>
                 <li><a href="contact.html" class="navbar-link">Contact</a></li>
@@ -17,138 +21,91 @@
         </nav>
     </header>
 
-    <main>
-        <section id="gallery" class="bg-gray-50 container mx-auto px-4 py-16 md:py-24 rounded-lg shadow-inner">
-            <h2 class="section-heading">My Gallery</h2>
-
-            <div class="mb-12">
-                <div class="gallery-controls-bar">
-                    <div class="category-dropdown-container">
-                        <label for="category-select" class="sr-only">Filter by category:</label>
-                        <select id="category-select" class="category-dropdown" onchange="filterGallery('image', this.value)">
-                            <option value="all">All Photos</option>
-                            <option value="art">Art</option>
-                            <option value="fashion">Fashion</option>
-                            <option value="product">Product</option>
-                            <option value="documentary_photo">Documentary</option>
-                            <option value="wildlife">Wildlife</option>
-                            <option value="nature">Nature</option>
-                            <option value="portrait">Portrait</option>
-                        </select>
-                    </div>
-                    <h3 class="photos-heading">Photos</h3>
-
-                    <div class="sort-dropdown-container">
-                        <label for="sort-images">Sort by:</label>
-                        <select id="sort-images" class="sort-dropdown" onchange="sortGallery('image', this.value)">
-                            <option value="default">Default</option>
-                            <option value="title-asc">Title (A-Z)</option>
-                            <option value="title-desc">Title (Z-A)</option>
-                        </select>
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <section id="gallery" class="mb-12">
+            <h2 class="section-heading">Our Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="card relative group">
+                    <img src="images/gallery_1.JPG" alt="Gallery Image 1" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Nature's Embrace</h3>
+                        <p class="text-sm text-gray-600">A serene landscape captured at dawn.</p>
                     </div>
                 </div>
-                <div id="image-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    <div class="image-card card" data-type="image" data-category="art" data-src="images/art_photo_1_large.jpg" data-title="Abstract Art: Shapes and Shadows">
-                        <img src="images/art_photo_1.jpg" alt="Abstract Art Photography" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Abstract Art</h4>
-                            <p class="text-gray-600 text-sm">Exploring shapes and shadows.</p>
-                        </div>
+                <div class="card relative group">
+                    <img src="images/gallery_2.JPG" alt="Gallery Image 2" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Urban Reflections</h3>
+                        <p class="text-sm text-gray-600">Cityscape after a gentle rain.</p>
                     </div>
-                    <div class="image-card card" data-type="image" data-category="fashion" data-src="images/fashion_photo_1_large.jpg" data-title="Fashion: Vibrant Spring Styles">
-                        <img src="images/fashion_photo_1.jpg" alt="Fashion Photography: Spring Collection" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Spring Collection</h4>
-                            <p class="text-gray-600 text-sm">Vibrant styles and poses.</p>
-                        </div>
+                </div>
+                <div class="card relative group">
+                    <img src="images/gallery_3.JPG" alt="Gallery Image 3" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Golden Hour Portrait</h3>
+                        <p class="text-sm text-gray-600">Capturing warmth and character.</p>
                     </div>
-                    <div class="image-card card" data-type="image" data-category="product" data-src="images/product_photo_1_large.jpg" data-title="Product: Detail of a Luxury Watch">
-                        <img src="images/product_photo_1.jpg" alt="Product Photography: Luxury Watch" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Luxury Watch</h4>
-                            <p class="text-gray-600 text-sm">Detail-oriented product photography.</p>
-                        </div>
+                </div>
+                <div class="card relative group">
+                    <img src="images/gallery_4.JPG" alt="Gallery Image 4" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Wildlife Gaze</h3>
+                        <p class="text-sm text-gray-600">An intimate moment in the wild.</p>
                     </div>
-                    <div class="image-card card" data-type="image" data-category="documentary_photo" data-src="images/documentary_photo_1_large.jpg" data-title="Documentary: Everyday Life in Old Delhi">
-                        <img src="images/documentary_photo_1.jpg" alt="Documentary Photography: Streets of Old Delhi" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Streets of Old Delhi</h4>
-                            <p class="text-gray-600 text-sm">Capturing everyday moments.</p>
-                        </div>
+                </div>
+                <div class="card relative group">
+                    <img src="images/gallery_5.JPG" alt="Gallery Image 5" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Abstract Light</h3>
+                        <p class="text-sm text-gray-600">Play of light and shadow.</p>
                     </div>
-                    <div class="image-card card" data-type="image" data-category="wildlife" data-src="images/wildlife_photo_1_large.jpg" data-title="Wildlife: A Curious Lion Cub">
-                        <img src="images/wildlife_photo_1.jpg" alt="Wildlife Photography: Curious Cub" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Curious Cub</h4>
-                            <p class="text-gray-600 text-sm">A glimpse into the wild.</p>
-                        </div>
-                    </div>
-                    <div class="image-card card" data-type="image" data-category="nature" data-src="images/nature_photo_1_large.jpg" data-title="Nature: Serenity in the Alps">
-                        <img src="images/nature_photo_1.jpg" alt="Nature Photography: Alpine Serenity" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Alpine Serenity</h4>
-                            <p class="text-gray-600 text-sm">Breathtaking landscapes.</p>
-                        </div>
-                    </div>
-                    <div class="image-card card" data-type="image" data-category="portrait" data-src="images/portrait_photo_1_large.jpg" data-title="Portrait: A Moment of Reflection">
-                        <img src="images/portrait_photo_1.jpg" alt="Portrait Photography: Woman in Thought" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Woman in Thought</h4>
-                            <p class="text-gray-600 text-sm">A captivating portrait.</p>
-                        </div>
-                    </div>
-                    <div class="image-card card" data-type="image" data-category="art" data-src="images/art_photo_2_large.jpg" data-title="Art: Urban Landscape at Night">
-                        <img src="images/art_photo_2.jpg" alt="Art Photography: City at Night" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">City at Night</h4>
-                            <p class="text-gray-600 text-sm">Exploring urban textures after dark.</p>
-                        </div>
-                    </div>
-                       <div class="image-card card" data-type="image" data-category="fashion" data-src="images/fashion_photo_2_large.jpg" data-title="Fashion: Autumn Vibes">
-                        <img src="images/fashion_photo_2.jpg" alt="Fashion Photography: Autumn Vibes" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Autumn Vibes</h4>
-                            <p class="text-gray-600 text-sm">Cozy and stylish fall fashion.</p>
-                        </div>
-                    </div>
-                       <div class="image-card card" data-type="image" data-category="product" data-src="images/product_photo_2_large.jpg" data-title="Product: Wireless Headphones">
-                        <img src="images/product_photo_2.jpg" alt="Product Photography: Wireless Headphones" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Wireless Headphones</h4>
-                            <p class="text-gray-600 text-sm">Showcasing sleek audio design.</p>
-                        </div>
-                    </div>
-                       <div class="image-card card" data-type="image" data-category="documentary_photo" data-src="images/documentary_photo_2_large.jpg" data-title="Documentary: Rural Life">
-                        <img src="images/documentary_photo_2.jpg" alt="Documentary Photography: Rural Life" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
-                        <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Rural Life</h4>
-                            <p class="text-gray-600 text-sm">Authentic moments from village daily life.</p>
-                        </div>
+                </div>
+                <div class="card relative group">
+                    <img src="images/gallery_6.JPG" alt="Gallery Image 6" class="w-full h-auto object-cover rounded-t-xl transition-transform duration-300 transform group-hover:scale-105">
+                    <div class="p-4 bg-white rounded-b-xl">
+                        <h3 class="text-lg font-semibold text-gray-800">Serene Waters</h3>
+                        <p class="text-sm text-gray-600">Calmness reflected.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="lightbox-overlay" aria-modal="true" role="dialog" tabindex="-1">
-        <span id="lightbox-close" onclick="closeLightbox()" aria-label="Close dialog">×</span>
-        <span id="lightbox-prev" class="lightbox-nav-arrow" onclick="navigateLightbox(-1)" aria-label="Previous item">‹</span>
-        <span id="lightbox-next" class="lightbox-nav-arrow" onclick="navigateLightbox(1)" aria-label="Next item">›</span>
-        <div id="lightbox-content-wrapper">
-            <div id="lightbox-content">
-                </div>
-            <div id="lightbox-title" role="status" aria-live="polite"></div>
-        </div>
-    </div>
+    <nav class="bottom-nav md:hidden">
+        <a href="index.html" class="bottom-nav-item" data-path="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125h9.75a1.125 1.125 0 001.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="bio.html" class="bottom-nav-item" data-path="bio.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            <span>Profile</span>
+        </a>
+        <a href="gallery.html" class="bottom-nav-item" data-path="gallery.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175 0 1.8.847 3.398 2.15 4.54a27.02 27.02 0 012.324 2.536 2.307 2.307 0 012.92-.027l2.872-2.12c.563-.416.81-.663 1.03-.82a.75.75 0 00.322-1.077 3.376 3.376 0 00-2.314-3.374c-.38-.054-.757-.112-1.134-.175a2.31 2.31 0 01-1.637-.665c-.244-.216-.481-.462-.707-.733-.242-.284-.467-.581-.676-.893a2.31 2.31 0 01-1.637-.665zM12 6a.75.75 0 110-1.5.75.75 0 010 1.5zm0 1.5a.75.75 0 110-1.5.75.75 0 010 1.5zM12 9a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+            </svg>
+            <span>Gallery</span>
+        </a>
+        <a href="contact.html" class="bottom-nav-item" data-path="contact.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.906l-11.25 4.155a2.25 2.25 0 01-2.134 0L2.25 8.999M12 12h.008v.008H12V12zm.75 4.5h.008v.008H12.75V16.5zm-.75-9h.008v.008H12V7.5z" />
+            </svg>
+            <span>Contact</span>
+        </a>
+    </nav>
 
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
-                <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
+                <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
-                <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
+                <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
             </div>
         </div>
     </footer>
