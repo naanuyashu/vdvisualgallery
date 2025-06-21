@@ -3,102 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VD- Profile </title>
-    <!-- Tailwind CSS CDN for styling -->
+    <title>VD - Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Import Google Font 'Poppins' for modern typography (consistent with index.html) */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Poppins', sans-serif; /* Changed from Inter to Poppins for consistency */
-            background-color: #F7F7F7; /* A light, neutral background */
-            color: #333333; /* Darker text for readability */
-            padding-bottom: 0; /* No bottom padding, as mobile nav is not present on this page */
-            overflow-x: hidden;
-        }
-
-        /* --- Top Navbar (Desktop Only) - Consistent with index.html --- */
-        .top-navbar {
-            background-color: #1A0D3F; /* Deep purple/blue background */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        .navbar-logo-text {
-            color: #E0BBE4; /* Lighter purple/pink for VD */
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
-        }
-        /* Navigation links - now with pure white text and curved edges, no active state */
-        .top-navbar .navbar-link {
-            background: none;
-            @apply text-white px-5 py-2 rounded-full transition-colors duration-300 ease-in-out; /* Ensured rounded-full for curved edges */
-            font-weight: 500;
-            box-shadow: none;
-            white-space: nowrap;
-            color: #FFFFFF; /* Explicitly set text to white for clarity */
-        }
-        .top-navbar .navbar-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: none;
-            color: #FFFFFF; /* Keep text white on hover */
-        }
-        /* No '.active' styling for navbar links */
-
-        /* --- Global Styles for Main Content Sections --- */
-        .section-heading {
-            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
-        }
-        .section-heading::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background-color: #D3D3D3;
-            margin: 1rem auto 0;
-            border-radius: 9999px;
-        }
-        .card {
-            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105;
-        }
-
-        /* Existing styles from bio.html that are still relevant */
-        .gallery-category-button {
-            @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
-                     border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400;
-        }
-        .active-category {
-             @apply bg-gray-700 text-white border-gray-700 hover:bg-gray-800 hover:border-gray-800;
-        }
-        .input-field {
-            @apply w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500;
-        }
-        .submit-button {
-            @apply bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-300;
-        }
-
-        /* Responsive display for navbars - this page only uses top-navbar */
-        @media (max-width: 767px) {
-            .top-navbar {
-                display: none;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .top-navbar {
-                display: block;
-            }
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="style.css"> </head>
 <body class="leading-relaxed">
 
-    <!-- Header & Navigation (Desktop Only - using .top-navbar class) -->
     <header class="top-navbar sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
             <a href="index.html" class="navbar-logo-text">VD</a>
+
             <ul class="flex space-x-3 items-center">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
@@ -108,41 +21,115 @@
         </nav>
     </header>
 
-    <main>
-        <!-- Profile/Bio Section -->
-        <section id="bio" class="container mx-auto px-4 py-16 md:py-24">
-            <h2 class="section-heading font-bold">About Me</h2> <!-- Added font-bold explicitly -->
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-12 max-w-5xl mx-auto">
-                <div class="md:w-1/3 flex justify-center">
-                    <img src="images/VD_PP.jpeg" alt="Your Portrait" class="rounded-xl shadow-lg w-full max-w-xs md:max-w-none object-cover h-auto">
+    <main class="container mx-auto px-4 py-8 md:py-12">
+        <section id="about-me" class="mb-12">
+            <h2 class="section-heading">About Me</h2>
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+                <div class="flex-shrink-0 w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden shadow-md">
+                    <img src="images/profile.jpeg" alt="Varun Devang" class="w-full h-full object-cover">
                 </div>
-                <div class="md:w-2/3 text-lg text-gray-700">
-                    <div class="pl-4 md:pl-0">
-                        <p class="mb-6 text-justify"> <!-- Added text-justify -->
-                            Hello! I'm Varun Devang, a passionate photographer dedicated to capturing the essence of life through my lens. With 2 years of experience, I specialize in areas like product,fashion, wildlife & documentary. My journey began with a simple click, evolving into a deep fascination with light, composition, and the stories hidden in every frame.
-                        </p>
-                        <p class="mb-6 text-justify"> <!-- Added text-justify -->
-                            I believe photography is more than just taking pictures; it's about preserving emotions, freezing fleeting moments, and telling compelling narratives. Whether it's the raw beauty of nature, the vibrant energy of a fashion shoot, or the intricate details of a product, I strive to create images that resonate and leave a lasting impression.
-                        </p>
-                        <p class="text-justify"> <!-- Added text-justify -->
-                            Beyond the technical aspects, I bring a unique artistic vision to every project, ensuring that each photograph is not just seen, but felt. Let's connect and create something beautiful together!
-                        </p>
-                        <div class="mt-8 flex justify-center md:justify-start space-x-6">
-                            <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/twitterx--v2.png" alt="Twitter"></a>
-                            <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/instagram-new--v2.png" alt="Instagram"></a>
-                            <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-600 hover:text-gray-800 transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/youtube.png" alt="Youtube"></a>
-                            <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/000000/whatsapp--v1.png" alt="WhatsApp"></a>
-                        </div>
+                <div class="md:flex-grow text-center md:text-left">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">Varun Devang</h3>
+                    <p class="text-md text-gray-600 mb-4">Photographer & Visual Storyteller</p>
+                    <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
+                        Hello! I'm Varun Devang, a passionate photographer with a keen eye for capturing moments that tell compelling stories. My journey behind the lens began with a simple curiosity, which quickly transformed into a lifelong dedication to visual arts. I specialize in various forms of photography, from candid portraits to breathtaking landscapes, always striving to reveal the unique beauty in every subject.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mt-3 text-sm sm:text-base">
+                        My goal is to create images that resonate, evoke emotion, and stand the test of time. I believe that every photograph is a piece of history, a frozen fragment of a fleeting moment. Let's create something beautiful together.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="mb-12">
+            <h2 class="section-heading">Skills & Expertise</h2>
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/camera--v1.png" alt="Photography Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Portrait Photography</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/landscape.png" alt="Landscape Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Landscape Photography</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/wedding-dress.png" alt="Wedding Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Event Photography</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/adobe-photoshop.png" alt="Photoshop Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Adobe Photoshop</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/adobe-lightroom.png" alt="Lightroom Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Adobe Lightroom</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://img.icons8.com/ios-filled/30/000000/video-camera--v1.png" alt="Videography Icon" class="w-8 h-8">
+                        <span class="text-lg font-medium text-gray-800">Basic Videography</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-heading">Experience</h2>
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-gray-400 pl-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Freelance Photographer</h3>
+                        <p class="text-gray-600">2020 - Present</p>
+                        <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1 text-sm sm:text-base">
+                            <li>Successfully executed diverse photography projects for various clients.</li>
+                            <li>Specialized in capturing candid moments and authentic emotions.</li>
+                            <li>Managed client communications, project planning, and post-production.</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-gray-400 pl-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Photography Assistant</h3>
+                        <p class="text-gray-600">2018 - 2020</p>
+                        <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1 text-sm sm:text-base">
+                            <li>Assisted lead photographers on large-scale events and commercial shoots.</li>
+                            <li>Gained hands-on experience with professional equipment and lighting setups.</li>
+                            <li>Contributed to photo editing and archival processes.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <nav class="bottom-nav md:hidden">
+        <a href="index.html" class="bottom-nav-item" data-path="index.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125h9.75a1.125 1.125 0 001.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="bio.html" class="bottom-nav-item" data-path="bio.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+            <span>Profile</span>
+        </a>
+        <a href="gallery.html" class="bottom-nav-item" data-path="gallery.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175 0 1.8.847 3.398 2.15 4.54a27.02 27.02 0 012.324 2.536 2.307 2.307 0 012.92-.027l2.872-2.12c.563-.416.81-.663 1.03-.82a.75.75 0 00.322-1.077 3.376 3.376 0 00-2.314-3.374c-.38-.054-.757-.112-1.134-.175a2.31 2.31 0 01-1.637-.665c-.244-.216-.481-.462-.707-.733-.242-.284-.467-.581-.676-.893a2.31 2.31 0 01-1.637-.665zM12 6a.75.75 0 110-1.5.75.75 0 010 1.5zm0 1.5a.75.75 0 110-1.5.75.75 0 010 1.5zM12 9a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+            </svg>
+            <span>Gallery</span>
+        </a>
+        <a href="contact.html" class="bottom-nav-item" data-path="contact.html">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.906l-11.25 4.155a2.25 2.25 0 01-2.134 0L2.25 8.999M12 12h.008v.008H12V12zm.75 4.5h.008v.008H12.75V16.5zm-.75-9h.008v.008H12V7.5z" />
+            </svg>
+            <span>Contact</span>
+        </a>
+    </nav>
+
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
                 <a href="https://x.com/vdphotogallery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
@@ -151,5 +138,7 @@
             </div>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
