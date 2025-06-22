@@ -11,33 +11,41 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F7F7F7;
-            color: #333333;
+            /* Changed background to a darker color to be consistent */
+            background-color: #1A0033; /* Dark purple/blue inspired by the image */
+            color: #E0E0E0; /* Lighter text for readability, for overall page */
         }
+        /* Styling for navigation links */
         .navbar-link {
-            @apply px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors duration-300;
+            /* Text color white, with subtle hover effect */
+            @apply px-4 py-2 rounded-lg text-white hover:bg-white hover:bg-opacity-20 transition-colors duration-300;
         }
+        /* Styling for main section headings with an underline effect */
         .section-heading {
-            @apply text-4xl md:text-5xl font-bold text-center mb-12 relative;
+            /* ENSURED BOLD, CENTERED, AND LARGE */
+            @apply text-5xl md:text-6xl font-extrabold text-center mb-12 relative text-white;
         }
         .section-heading::after {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
-            background-color: #D3D3D3;
+            background-color: #A066FF; /* A vibrant color from the gradient palette */
             margin: 1rem auto 0;
-            border-radius: 9999px;
+            border-radius: 9999px; /* Fully rounded corners for the underline */
         }
+        /* Styling for gallery category filter buttons (kept for general use if needed elsewhere, though now mostly replaced by dropdown) */
         .gallery-category-button {
             @apply px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ease-in-out
-                   border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50;
+                    border-2 border-gray-600 text-gray-200 bg-gray-700 hover:bg-gray-600 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50; /* Adjusted for dark theme */
         }
+        /* Active state for gallery category buttons (JavaScript will add this class) */
         .active-category {
-            @apply bg-gray-700 text-white border-gray-700 hover:bg-gray-800 hover:border-gray-800;
+            @apply bg-purple-600 text-white border-purple-600 hover:bg-purple-700 hover:border-purple-700; /* Vibrant active state */
         }
+        /* Styling for individual gallery item cards */
         .card {
-            @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl;
+            @apply bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-xl; /* Darker card background */
         }
         .video-player {
             width: 100%;
@@ -124,12 +132,6 @@
             opacity: 1;
             background-color: rgba(0,0,0,0.5);
         }
-        #lightbox-prev {
-            left: 15px;
-        }
-        #lightbox-next {
-            right: 15px;
-        }
         #lightbox-title {
             color: white;
             font-size: 1.5rem;
@@ -141,20 +143,91 @@
             font-size: 1rem;
             margin-top: 10px;
         }
-        /* Sorting dropdown styling */
-        .sort-dropdown-container {
-            @apply flex justify-center items-center gap-2 mb-8;
+
+        /* --- DROPDOWN STYLES (Most Aggressive) --- */
+        /* Container for better alignment */
+        .filter-dropdown-container, .sort-dropdown-container {
+            @apply flex items-center gap-2;
         }
+
+        /* Core styling for the select element */
         .sort-dropdown {
-            @apply px-4 py-2 rounded-full text-sm font-medium border-2 border-gray-300 text-gray-700 bg-white cursor-pointer focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50;
+            /* Completely reset browser default appearance */
+            -webkit-appearance: none !important;
+            -moz-appearance: none !important;
+            appearance: none !important;
+
+            /* Force transparent background and no borders/shadows */
+            background-color: transparent !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E") !important; /* Custom arrow */
+            background-repeat: no-repeat !important;
+            background-position: right 0.75rem center !important;
+            background-size: 1rem !important;
+
+            border: none !important;
+            outline: none !important; /* Remove focus outline */
+            box-shadow: none !important; /* Remove any box shadow */
+            -webkit-box-shadow: none !important; /* For WebKit browsers */
+
+            /* Text and spacing */
+            padding: 0.25rem 2rem 0.25rem 0.5rem !important; /* Adjust padding for text and custom arrow */
+            color: white !important; /* Ensure text is white */
+            font-weight: bold !important; /* Ensure text is bold */
+            font-size: 1rem !important; /* Explicit font size */
+            cursor: pointer !important; /* Indicate it's clickable */
+            line-height: normal !important; /* Reset line-height that might interfere */
+            border-radius: 0 !important; /* Ensure no default border-radius */
         }
+
+        /* Style for options within the dropdown when it's open */
+        .sort-dropdown option {
+            background-color: #2D0052 !important; /* Dark background for options */
+            color: #E0E0E0 !important; /* Light text color for options */
+            font-weight: normal !important; /* Options themselves are usually not bold */
+            padding: 8px 12px !important; /* Add some padding for readability */
+        }
+
+        /* Style for the default/initial selected options, making them bold */
+        .sort-dropdown option[value="all"],
+        .sort-dropdown option[value="default"] {
+            font-weight: bold !important; /* Ensure these specific options are bold */
+            color: white !important; /* Ensure these specific options are white */
+        }
+
+        /* --- GALLERY SECTION BACKGROUND IMAGE --- */
+        #gallery {
+            /* Remove the Tailwind background color class if present in HTML */
+            /* @apply bg-gray-900; */
+
+            /* Add your background image properties */
+            background-image: url('images/your-gallery-background.jpg'); /* CHANGE THIS PATH */
+            background-size: cover; /* Cover the entire area */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-attachment: fixed; /* (Optional) Makes it parallax-like */
+            position: relative; /* Needed for overlay */
+            z-index: 1; /* Ensure content is above overlay */
+        }
+
+        /* Optional: Add an overlay to make text more readable on top of the background image */
+        #gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: -1; /* Place behind content but above background image */
+        }
+
     </style>
 </head>
 <body class="leading-relaxed">
 
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-purple-600 to-pink-500 shadow-lg py-4 sticky top-0 z-50">
         <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-800">VD</a>
+            <a href="index.html" class="text-2xl font-bold text-white">VD</a>
             <ul class="flex space-x-2 md:space-x-4">
                 <li><a href="index.html" class="navbar-link">Home</a></li>
                 <li><a href="bio.html" class="navbar-link">Profile</a></li>
@@ -165,170 +238,109 @@
     </header>
 
     <main>
-        <section id="gallery" class="bg-gray-50 container mx-auto px-4 py-16 md:py-24 rounded-lg shadow-inner">
+        <section id="gallery" class="container mx-auto px-4 py-16 md:py-24 rounded-3xl shadow-inner">
             <h2 class="section-heading">My Gallery</h2>
 
-            <div class="mb-16">
-                <h3 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Videos</h3>
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <button class="gallery-category-button active-category" data-category-type="video" onclick="filterGallery('video', 'all', this)">All Videos</button>
-                    <button class="gallery-category-button" data-category-type="video" onclick="filterGallery('video', 'cinematic', this)">Cinematic</button>
-                    <button class="gallery-category-button" data-category-type="video" onclick="filterGallery('video', 'documentary', this)">Documentary</button>
-                    <button class="gallery-category-button" data-category-type="video" onclick="filterGallery('video', 'animation', this)">Animation</button>
-                </div>
-                <div class="sort-dropdown-container">
-                    <label for="sort-videos" class="text-gray-700 text-sm font-medium">Sort by:</label>
-                    <select id="sort-videos" class="sort-dropdown" onchange="sortGallery('video', this.value)">
-                        <option value="default">Default</option>
-                        <option value="title-asc">Title (A-Z)</option>
-                        <option value="title-desc">Title (Z-A)</option>
-                    </select>
-                </div>
-                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="video-card card" data-type="video" data-category="cinematic" data-src="videos/my_cinematic_video.mp4" data-title="Urban Exploration - Cinematic">
-                        <div class="aspect-video bg-gray-200">
-                            <img src="images/cinematic_thumbnail.jpg" alt="Cinematic Video Thumbnail" class="w-full h-full object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Urban Exploration - Cinematic</h4>
-                            <p class="text-gray-600 text-sm">A visual journey through the forgotten corners of the city.</p>
-                        </div>
-                    </div>
-                    <div class="video-card card" data-type="video" data-category="documentary" data-src="videos/my_documentary_video.mp4" data-title="Life in the Highlands - Documentary">
-                        <div class="aspect-video bg-gray-200">
-                            <img src="images/documentary_thumbnail.jpg" alt="Documentary Video Thumbnail" class="w-full h-full object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Life in the Highlands - Documentary</h4>
-                            <p class="text-gray-600 text-sm">Exploring the daily lives of a remote mountain community.</p>
-                        </div>
-                    </div>
-                    <div class="video-card card" data-type="video" data-category="animation" data-src="videos/my_animation_video.mp4" data-title="The Adventures of Pixel">
-                        <div class="aspect-video bg-gray-200">
-                            <img src="images/animation_thumbnail.jpg" alt="Animation Video Thumbnail" class="w-full h-full object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">The Adventures of Pixel</h4>
-                            <p class="text-gray-600 text-sm">A short animated film for all ages.</p>
-                        </div>
-                    </div>
-                     <div class="video-card card" data-type="video" data-category="cinematic" data-src="videos/city_cinematic.mp4" data-title="Neon City Nights">
-                        <div class="aspect-video bg-gray-200">
-                            <img src="images/city_cinematic_thumbnail.jpg" alt="Neon City Nights Thumbnail" class="w-full h-full object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Neon City Nights</h4>
-                            <p class="text-gray-600 text-sm">A vibrant cinematic journey through the illuminated city.</p>
-                        </div>
-                    </div>
-                    <div class="video-card card" data-type="video" data-category="documentary" data-src="videos/ocean_documentary.mp4" data-title="Depths of the Ocean">
-                        <div class="aspect-video bg-gray-200">
-                            <img src="images/ocean_documentary_thumbnail.jpg" alt="Depths of the Ocean Thumbnail" class="w-full h-full object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 mb-2">Depths of the Ocean</h4>
-                            <p class="text-gray-600 text-sm">Discover the mysterious life beneath the waves.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div>
-                <h3 class="text-3xl font-semibold text-gray-800 mb-8 text-center">Photos</h3>
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <button class="gallery-category-button active-category" data-category-type="image" onclick="filterGallery('image', 'all', this)">All Photos</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'art', this)">Art</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'fashion', this)">Fashion</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'product', this)">Product</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'documentary_photo', this)">Documentary</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'wildlife', this)">Wildlife</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'nature', this)">Nature</button>
-                    <button class="gallery-category-button" data-category-type="image" onclick="filterGallery('image', 'portrait', this)">Portrait</button>
+                <div class="flex justify-between mb-8">
+                    <div class="filter-dropdown-container">
+                        <select id="filter-images" class="sort-dropdown" onchange="filterGallery('image', this.value)">
+                            <option value="all">All Photos</option>
+                            <option value="art">Art</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="product">Product</option>
+                            <option value="documentary_photo">Documentary</option>
+                            <option value="wildlife">Wildlife</option>
+                            <option value="nature">Nature</option>
+                            <option value="portrait">Portrait</option>
+                        </select>
+                    </div>
+
+                    <div class="sort-dropdown-container">
+                        <select id="sort-images" class="sort-dropdown" onchange="sortGallery('image', this.value)">
+                            <option value="default">Sort by</option>
+                            <option value="title-asc">Title (A-Z)</option>
+                            <option value="title-desc">Title (Z-A)</option>
+                        </select>
+                    </div>
                 </div>
-                 <div class="sort-dropdown-container">
-                    <label for="sort-images" class="text-gray-700 text-sm font-medium">Sort by:</label>
-                    <select id="sort-images" class="sort-dropdown" onchange="sortGallery('image', this.value)">
-                        <option value="default">Default</option>
-                        <option value="title-asc">Title (A-Z)</option>
-                        <option value="title-desc">Title (Z-A)</option>
-                    </select>
-                </div>
+
                 <div id="image-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div class="image-card card" data-type="image" data-category="art" data-src="images/art_photo_1_large.jpg" data-title="Abstract Art: Shapes and Shadows">
                         <img src="images/art_photo_1.jpg" alt="Abstract Art Photography" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Abstract Art</h4>
-                            <p class="text-gray-600 text-sm">Exploring shapes and shadows.</p>
+                            <h4 class="font-medium text-gray-100">Abstract Art</h4>
+                            <p class="text-gray-400 text-sm">Exploring shapes and shadows.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="fashion" data-src="images/fashion_photo_1_large.jpg" data-title="Fashion: Vibrant Spring Styles">
                         <img src="images/fashion_photo_1.jpg" alt="Fashion Photography: Spring Collection" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Spring Collection</h4>
-                            <p class="text-gray-600 text-sm">Vibrant styles and poses.</p>
+                            <h4 class="font-medium text-gray-100">Spring Collection</h4>
+                            <p class="text-gray-400 text-sm">Vibrant styles and poses.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="product" data-src="images/product_photo_1_large.jpg" data-title="Product: Detail of a Luxury Watch">
                         <img src="images/product_photo_1.jpg" alt="Product Photography: Luxury Watch" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Luxury Watch</h4>
-                            <p class="text-gray-600 text-sm">Detail-oriented product photography.</p>
+                            <h4 class="font-medium text-gray-100">Luxury Watch</h4>
+                            <p class="text-gray-400 text-sm">Detail-oriented product photography.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="documentary_photo" data-src="images/documentary_photo_1_large.jpg" data-title="Documentary: Everyday Life in Old Delhi">
                         <img src="images/documentary_photo_1.jpg" alt="Documentary Photography: Streets of Old Delhi" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Streets of Old Delhi</h4>
-                            <p class="text-gray-600 text-sm">Capturing everyday moments.</p>
+                            <h4 class="font-medium text-gray-100">Streets of Old Delhi</h4>
+                            <p class="text-gray-400 text-sm">Capturing everyday moments.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="wildlife" data-src="images/wildlife_photo_1_large.jpg" data-title="Wildlife: A Curious Lion Cub">
                         <img src="images/wildlife_photo_1.jpg" alt="Wildlife Photography: Curious Cub" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Curious Cub</h4>
-                            <p class="text-gray-600 text-sm">A glimpse into the wild.</p>
+                            <h4 class="font-medium text-gray-100">Curious Cub</h4>
+                            <p class="text-gray-400 text-sm">A glimpse into the wild.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="nature" data-src="images/nature_photo_1_large.jpg" data-title="Nature: Serenity in the Alps">
                         <img src="images/nature_photo_1.jpg" alt="Nature Photography: Alpine Serenity" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Alpine Serenity</h4>
-                            <p class="text-gray-600 text-sm">Breathtaking landscapes.</p>
+                            <h4 class="font-medium text-gray-100">Alpine Serenity</h4>
+                            <p class="text-gray-400 text-sm">Breathtaking landscapes.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="portrait" data-src="images/portrait_photo_1_large.jpg" data-title="Portrait: A Moment of Reflection">
                         <img src="images/portrait_photo_1.jpg" alt="Portrait Photography: Woman in Thought" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Woman in Thought</h4>
-                            <p class="text-gray-600 text-sm">A captivating portrait.</p>
+                            <h4 class="font-medium text-gray-100">Woman in Thought</h4>
+                            <p class="text-gray-400 text-sm">A captivating portrait.</p>
                         </div>
                     </div>
                     <div class="image-card card" data-type="image" data-category="art" data-src="images/art_photo_2_large.jpg" data-title="Art: Urban Landscape at Night">
                         <img src="images/art_photo_2.jpg" alt="Art Photography: City at Night" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">City at Night</h4>
-                            <p class="text-gray-600 text-sm">Exploring urban textures after dark.</p>
+                            <h4 class="font-medium text-gray-100">City at Night</h4>
+                            <p class="text-gray-400 text-sm">Exploring urban textures after dark.</p>
                         </div>
                     </div>
-                     <div class="image-card card" data-type="image" data-category="fashion" data-src="images/fashion_photo_2_large.jpg" data-title="Fashion: Autumn Vibes">
+                    <div class="image-card card" data-type="image" data-category="fashion" data-src="images/fashion_photo_2_large.jpg" data-title="Fashion: Autumn Vibes">
                         <img src="images/fashion_photo_2.jpg" alt="Fashion Photography: Autumn Vibes" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Autumn Vibes</h4>
-                            <p class="text-gray-600 text-sm">Cozy and stylish fall fashion.</p>
+                            <h4 class="font-medium text-gray-100">Autumn Vibes</h4>
+                            <p class="text-gray-400 text-sm">Cozy and stylish fall fashion.</p>
                         </div>
                     </div>
-                     <div class="image-card card" data-type="image" data-category="product" data-src="images/product_photo_2_large.jpg" data-title="Product: Wireless Headphones">
+                    <div class="image-card card" data-type="image" data-category="product" data-src="images/product_photo_2_large.jpg" data-title="Product: Wireless Headphones">
                         <img src="images/product_photo_2.jpg" alt="Product Photography: Wireless Headphones" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Wireless Headphones</h4>
-                            <p class="text-gray-600 text-sm">Showcasing sleek audio design.</p>
+                            <h4 class="font-medium text-gray-100">Wireless Headphones</h4>
+                            <p class="text-gray-400 text-sm">Showcasing sleek audio design.</p>
                         </div>
                     </div>
-                     <div class="image-card card" data-type="image" data-category="documentary_photo" data-src="images/documentary_photo_2_large.jpg" data-title="Documentary: Rural Life">
+                    <div class="image-card card" data-type="image" data-category="documentary_photo" data-src="images/documentary_photo_2_large.jpg" data-title="Documentary: Rural Life">
                         <img src="images/documentary_photo_2.jpg" alt="Documentary Photography: Rural Life" class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openLightbox(this)" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/CCCCCC/666666?text=Image+Error';">
                         <div class="p-4">
-                            <h4 class="font-medium text-gray-800">Rural Life</h4>
-                            <p class="text-gray-600 text-sm">Authentic moments from village daily life.</p>
+                            <h4 class="font-medium text-gray-100">Rural Life</h4>
+                            <p class="text-gray-400 text-sm">Authentic moments from village daily life.</p>
                         </div>
                     </div>
                 </div>
@@ -336,28 +348,28 @@
         </section>
     </main>
 
-    <div id="lightbox-overlay" aria-modal="true" role="dialog" tabindex="-1">
-        <span id="lightbox-close" onclick="closeLightbox()" aria-label="Close dialog">×</span>
-        <span id="lightbox-prev" class="lightbox-nav-arrow" onclick="navigateLightbox(-1)" aria-label="Previous item">&#8249;</span>
-        <span id="lightbox-next" class="lightbox-nav-arrow" onclick="navigateLightbox(1)" aria-label="Next item">&#8250;</span>
-        <div id="lightbox-content-wrapper">
-            <div id="lightbox-content">
-                </div>
-            <div id="lightbox-title" role="status" aria-live="polite"></div>
-        </div>
-    </div>
-
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-900 text-gray-300 py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 VD VisualGallery. All rights reserved.</p>
+            <p>© 2025 VD VisualGallery. All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
-                <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
+                <a href="https://x.com/vdphotogallery" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/twitterx--v2.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/varun.devang_?igsh=YWd5bno3b2Ewd2M3" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/instagram-new--v2.png" alt="Instagram"></a>
                 <a href="https://www.youtube.com/@VDPhotograllery" target="_blank" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/youtube.png" alt="Youtube"></a>
                 <a href="https://wa.me/qr/5V6T3AHOXFH7B1" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors"><img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp--v1.png" alt="WhatsApp"></a>
             </div>
         </div>
     </footer>
+
+    <div id="lightbox-overlay" aria-modal="true" role="dialog" tabindex="-1">
+        <span id="lightbox-close" onclick="closeLightbox()" aria-label="Close dialog">×</span>
+        <span id="lightbox-prev" class="lightbox-nav-arrow" onclick="navigateLightbox(-1)" aria-label="Previous item">‹</span>
+        <span id="lightbox-next" class="lightbox-nav-arrow" onclick="navigateLightbox(1)" aria-label="Next item">›</span>
+        <div id="lightbox-content-wrapper">
+            <div id="lightbox-content">
+            </div>
+            <div id="lightbox-title" role="status" aria-live="polite"></div>
+        </div>
+    </div>
 
     <script>
         let currentGalleryItems = []; // Stores the currently visible items for lightbox navigation
@@ -372,19 +384,15 @@
          * Filters and sorts gallery cards displayed.
          * @param {string} galleryType - 'video' or 'image'.
          * @param {string} category - The category to filter by ('all' or a specific category).
-         * @param {HTMLElement} clickedButton - The button element that was clicked to trigger the filter.
+         * // Removed @param {HTMLElement} clickedButton - The button element that was clicked to trigger the filter.
          */
-        function filterGallery(galleryType, category, clickedButton) {
-            activeGalleryType = galleryType; // Set the active gallery type
+        function filterGallery(galleryType, category) {
+            activeGalleryType = galleryType;
 
             const gridId = galleryType === 'video' ? 'video-grid' : 'image-grid';
             const cards = document.querySelectorAll(`#${gridId} .card`);
-            const filterButtons = document.querySelectorAll(`button[data-category-type="${galleryType}"]`);
 
-            filterButtons.forEach(button => button.classList.remove('active-category'));
-            clickedButton.classList.add('active-category');
-
-            currentGalleryItems = []; // Reset current items for lightbox navigation
+            currentGalleryItems = [];
 
             cards.forEach(card => {
                 const cardCategory = card.dataset.category;
@@ -396,10 +404,9 @@
                 }
             });
 
-            // Re-apply sorting after filtering
             const sortDropdownId = galleryType === 'video' ? 'sort-videos' : 'sort-images';
             const sortDropdown = document.getElementById(sortDropdownId);
-            if (sortDropdown) { // Check if dropdown exists
+            if (sortDropdown) {
                 const sortOrder = sortDropdown.value;
                 sortGallery(galleryType, sortOrder);
             }
@@ -413,7 +420,6 @@
         function sortGallery(galleryType, sortOrder) {
             const gridId = galleryType === 'video' ? 'video-grid' : 'image-grid';
             const grid = document.getElementById(gridId);
-            // Filter only currently visible items for sorting
             let items = Array.from(grid.children).filter(card => card.style.display !== 'none');
 
             if (sortOrder === 'title-asc') {
@@ -429,14 +435,8 @@
                     return titleB.localeCompare(titleA);
                 });
             }
-            // For 'default', we revert to the original order, which is the order they appear in the HTML
-            // This is achieved by first re-filtering (which rebuilds currentGalleryItems from HTML order)
-            // and then applying the sort. If sortOrder is 'default', the sort function doesn't reorder.
 
-            // Efficiently re-append sorted items to the grid
             items.forEach(item => grid.appendChild(item));
-
-            // Update currentGalleryItems after sorting to maintain correct lightbox navigation order
             currentGalleryItems = Array.from(grid.children).filter(card => card.style.display !== 'none');
         }
 
@@ -451,15 +451,15 @@
             const src = card.dataset.src;
             const title = card.dataset.title;
 
-            // Find the index of the clicked item among the currently filtered items
+            currentGalleryItems = Array.from(clickedThumbnail.closest('.grid').children).filter(item => item.style.display !== 'none');
             currentItemIndex = currentGalleryItems.findIndex(item => item === card);
+
 
             displayLightboxContent(type, src, title);
 
-            lightboxOverlay.style.display = 'flex'; // Use flex to center content
-            // Manage scrollbar of body
+            lightboxOverlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            lightboxOverlay.focus(); // Focus the overlay for accessibility
+            lightboxOverlay.focus();
         }
 
         /**
@@ -469,24 +469,24 @@
          * @param {string} title - The title/description of the media.
          */
         function displayLightboxContent(type, src, title) {
-            lightboxContent.innerHTML = ''; // Clear previous content
-            lightboxTitle.textContent = title; // Set the title
+            lightboxContent.innerHTML = '';
+            lightboxTitle.textContent = title;
 
             if (type === 'image') {
-                const img = new Image(); // Use Image object for better loading control
+                const img = new Image();
                 img.src = src;
-                img.alt = title; // Alt text for accessibility
-                img.classList.add('rounded-xl'); // Apply styling
-                img.setAttribute('role', 'img'); // ARIA role for images
+                img.alt = title;
+                img.classList.add('rounded-xl');
+                img.setAttribute('role', 'img');
 
                 const loadingIndicator = document.createElement('div');
                 loadingIndicator.textContent = 'Loading image...';
-                loadingIndicator.className = 'error-message text-white'; // Reusing style for simplicity
+                loadingIndicator.className = 'error-message text-white';
 
                 lightboxContent.appendChild(loadingIndicator);
 
                 img.onload = () => {
-                    lightboxContent.innerHTML = ''; // Clear loading message
+                    lightboxContent.innerHTML = '';
                     lightboxContent.appendChild(img);
                 };
                 img.onerror = () => {
@@ -500,40 +500,39 @@
                 const video = document.createElement('video');
                 video.classList.add('video-player', 'rounded-xl');
                 video.controls = true;
-                video.autoplay = true; // Autoplay when opened
-                video.setAttribute('aria-label', title); // ARIA label for video
+                video.autoplay = true;
+                video.setAttribute('aria-label', title);
 
-                // Optional: add multiple source types for broader compatibility
                 const sourceMp4 = document.createElement('source');
                 sourceMp4.src = src;
                 sourceMp4.type = 'video/mp4';
                 video.appendChild(sourceMp4);
 
-                // Add a fallback for browsers that don't support the video tag
                 const fallbackText = document.createElement('p');
                 fallbackText.textContent = 'Your browser does not support the video tag.';
+                fallbackText.classList.add('error-message');
                 video.appendChild(fallbackText);
 
-                const loadingIndicator = document.createElement('div');
-                loadingIndicator.textContent = 'Loading video...';
-                loadingIndicator.className = 'error-message text-white';
-
-                lightboxContent.appendChild(loadingIndicator);
-
-                // Event listener for when the video metadata is loaded
-                video.onloadedmetadata = () => {
-                    lightboxContent.innerHTML = ''; // Clear loading message
-                    lightboxContent.appendChild(video);
-                };
-                // Event listener for playback errors
                 video.onerror = () => {
                     lightboxContent.innerHTML = '';
                     const errorMessage = document.createElement('p');
-                    errorMessage.textContent = 'Error playing video. Please try again or check the source.';
+                    errorMessage.textContent = 'Error loading video. Please try again.';
                     errorMessage.classList.add('error-message');
                     lightboxContent.appendChild(errorMessage);
                 };
+                lightboxContent.appendChild(video);
             }
+        }
+
+        /**
+         * Closes the lightbox.
+         */
+        function closeLightbox() {
+            lightboxOverlay.style.display = 'none';
+            lightboxContent.innerHTML = '';
+            lightboxTitle.textContent = '';
+            document.body.style.overflow = '';
+            currentItemIndex = -1;
         }
 
         /**
@@ -543,65 +542,37 @@
         function navigateLightbox(direction) {
             if (currentGalleryItems.length === 0) return;
 
-            currentItemIndex += direction;
-
-            // Loop around if at the ends
-            if (currentItemIndex < 0) {
-                currentItemIndex = currentGalleryItems.length - 1;
-            } else if (currentItemIndex >= currentGalleryItems.length) {
-                currentItemIndex = 0;
-            }
-
+            currentItemIndex = (currentItemIndex + direction + currentGalleryItems.length) % currentGalleryItems.length;
             const nextItem = currentGalleryItems[currentItemIndex];
+
             if (nextItem) {
-                displayLightboxContent(nextItem.dataset.type, nextItem.dataset.src, nextItem.dataset.title);
+                const type = nextItem.dataset.type;
+                const src = nextItem.dataset.src;
+                const title = nextItem.dataset.title;
+                displayLightboxContent(type, src, title);
             }
         }
 
-        /**
-         * Closes the lightbox.
-         */
-        function closeLightbox() {
-            lightboxOverlay.style.display = 'none';
-            lightboxContent.innerHTML = ''; // Clear content
-            lightboxTitle.textContent = ''; // Clear title
-            document.body.style.overflow = ''; // Restore body scrollbar
-            currentItemIndex = -1; // Reset index
-        }
+        // Initialize filtering for the photo section on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const imageFilterDropdown = document.getElementById('filter-images');
+            if (imageFilterDropdown) {
+                imageFilterDropdown.value = 'all';
+                filterGallery('image', 'all');
+            }
+        });
 
-        // Close lightbox on outside click
-        lightboxOverlay.addEventListener('click', function(event) {
-            // Check if the click target is the overlay itself or the content wrapper
-            if (event.target === lightboxOverlay || event.target.id === 'lightbox-content-wrapper') {
+        // Close lightbox on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxOverlay.style.display === 'flex') {
                 closeLightbox();
             }
-        });
-
-        // Close lightbox on Escape key, and navigate with arrow keys
-        document.addEventListener('keydown', function(event) {
-            if (lightboxOverlay.style.display === 'flex') { // Only if lightbox is open
-                if (event.key === 'Escape') {
-                    closeLightbox();
-                } else if (event.key === 'ArrowLeft') {
+            if (lightboxOverlay.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') {
                     navigateLightbox(-1);
-                } else if (event.key === 'ArrowRight') {
+                } else if (e.key === 'ArrowRight') {
                     navigateLightbox(1);
                 }
-            }
-        });
-
-        // Initialize gallery filters when the DOM is fully loaded.
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize video gallery
-            const initialVideoButton = document.querySelector('button[data-category-type="video"][data-category="all"]');
-            if (initialVideoButton) {
-                filterGallery('video', 'all', initialVideoButton);
-            }
-
-            // Initialize image gallery
-            const initialImageButton = document.querySelector('button[data-category-type="image"][data-category="all"]');
-            if (initialImageButton) {
-                filterGallery('image', 'all', initialImageButton);
             }
         });
     </script>
