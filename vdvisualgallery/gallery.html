@@ -24,8 +24,9 @@
         }
         /* Styling for main section headings with an underline effect */
         .section-heading {
-            /* ENSURED BOLD, CENTERED, AND LARGE */
-            @apply text-5xl md:text-6xl font-extrabold text-center mb-12 relative text-white;
+        @apply text-5xl md:text-6xl text-center mb-12 relative text-white;
+        font-weight: 800 !important; /* Explicitly force font-extrabold */
+
         }
         .section-heading::after {
             content: '';
